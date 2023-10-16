@@ -6,7 +6,7 @@ public class Main {
         String[] playerNames = ui.getPlayerNames(numPlayers);
 
         // Initialize UnoGame, Player, Card, and Deck objects and start the game here
-        // UnoGame unoGame = new UnoGame(numPlayers, playerNames);
+        // UnoGame unoGame = new UnoGame();
 
         // Implement the game loop here
 
