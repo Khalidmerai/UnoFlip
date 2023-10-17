@@ -187,6 +187,14 @@ public class UnoGame {
             currentColor = initialCard.getColor();
         }
     }
+    public Player getWinner() {
+        for (Player player : players) {
+            if (player.hasWon()) {
+                return player;
+            }
+        }
+        return null; // No winner yet
+    }
 
 
 }
