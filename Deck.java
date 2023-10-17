@@ -13,12 +13,12 @@ public class Deck {
     public Deck() {
         for (Card.Color c : Card.Color.values()) {
             for (int i : numbers) {
-                decks.add(new Card(c, Card.Type.values(), i));
+               // decks.add(new Card(c, Card.Type.values(), i));
             }
         }
 
         for (int j : specialNumbers) {
-            decks.add(new Card(Card.Color.values(), Card.Type.values(), j));
+           // decks.add(new Card(Card.Color.values(), Card.Type.values(), j));
         }
     }
 
