@@ -6,7 +6,8 @@ How to Play UNO:
 1. Run the Class Main
 2. Enter the number of Players : (2-4)
 3. Enter the name of Players
-4. 
+4. The game will display the top card on the discard pile, and each player's initial hand.
+5. You can choose to draw a card (enter 0) or play a card (enter 1) when prompted
 
 BREAK DOWN OF TASKS FOR MILESTONE 1:
 
