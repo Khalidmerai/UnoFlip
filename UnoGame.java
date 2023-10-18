@@ -17,8 +17,6 @@ public class UnoGame {
         this.reverseDirection = false;
         this.currentColor = null;
         System.out.println("Uno game has started!");
-        setInitialCard(); // Set the initial card
-        displayTopCard();
 
         // Initialize the game by dealing cards to players and starting the discard pile.
         dealInitialCards();
