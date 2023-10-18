@@ -13,7 +13,7 @@ public class Main {
             players.add(new Player(playerName));
         }
 
-        UnoGame unoGame = new UnoGame(players);
+        UnoGame unoGame = new UnoGame(players, new Deck());
 
         // Implement the game loop
         while (!unoGame.hasGameEnded()) {
