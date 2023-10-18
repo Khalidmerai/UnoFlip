@@ -10,13 +10,23 @@ public class ConsoleUI {
 
     public int getNumberOfPlayers() {
         int numPlayers = 0;
-        while (numPlayers < 2 || numPlayers > 4) {
+        boolean validInput = false;
+
+        while (!validInput) {
             System.out.print("Enter the number of players (2-4): ");
-            numPlayers = scanner.nextInt();
-            if (numPlayers < 2 || numPlayers > 4) {
-                System.out.println("Invalid number of players. Please enter 2, 3, or 4.");
+            if (scanner.hasNextInt()) {
+                numPlayers = scanner.nextInt();
+                if (numPlayers >= 2 && numPlayers <= 4) {
+                    validInput = true;
+                } else {
+                    System.out.println("Invalid number of players. Please enter 2, 3, or 4.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter an integer (2-4).");
+                scanner.next();
             }
         }
+
         return numPlayers;
     }
 
