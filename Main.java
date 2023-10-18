@@ -23,9 +23,11 @@ public class Main {
             int choice = ui.getPlayOrDrawChoice();
             if (choice == 0) {
                 unoGame.drawCard(currentPlayer);
+                unoGame.displayTopCard();
             } else if (choice == 1) {
                 Card cardToPlay = ui.selectCardToPlay(currentPlayer);
                 unoGame.playCard(currentPlayer, cardToPlay);
+                unoGame.displayTopCard();
             }
         }
 
