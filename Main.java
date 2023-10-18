@@ -13,7 +13,7 @@ public class Main {
             players.add(new Player(playerName));
         }
 
-        UnoGame unoGame = new UnoGame(players);
+        UnoGame unoGame = new UnoGame(players, new Deck());
 
         // Implement the game loop
         while (!unoGame.hasGameEnded()) {
@@ -23,9 +23,11 @@ public class Main {
             int choice = ui.getPlayOrDrawChoice();
             if (choice == 0) {
                 unoGame.drawCard(currentPlayer);
+                unoGame.displayTopCard();
             } else if (choice == 1) {
                 Card cardToPlay = ui.selectCardToPlay(currentPlayer);
                 unoGame.playCard(currentPlayer, cardToPlay);
+                unoGame.displayTopCard();
             }
         }
 
