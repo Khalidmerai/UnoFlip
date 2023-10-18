@@ -24,10 +24,15 @@ public class Main {
             if (choice == 0) {
                 unoGame.drawCard(currentPlayer);
                 unoGame.displayTopCard();
-            } else if (choice == 1) {
-                Card cardToPlay = ui.selectCardToPlay(currentPlayer);
-                unoGame.playCard(currentPlayer, cardToPlay);
-                unoGame.displayTopCard();
+            } else {
+                int cardIndex = choice - 1; // Adjust for 1-based indexing
+                if (cardIndex >= 0 && cardIndex < currentPlayer.getCards().size()) {
+                    Card cardToPlay = currentPlayer.getCards().get(cardIndex);
+                    unoGame.playCard(currentPlayer, cardToPlay);
+                    unoGame.displayTopCard();
+                } else {
+                    System.out.println("Invalid card index. Please try again.");
+                }
             }
         }
 

@@ -8,9 +8,9 @@ How to Play UNO using the console interface:
 2. Enter the number of Players : (2-4)
 3. Enter the name of Players
 4. The game will display the top card on the discard pile, and each player's initial hand.
-5. You can choose to draw a card (enter 0) or play a card (enter 1) when prompted
+5. You can choose to draw a card (enter 0) or play a card (enter index of card) when prompted
    -> if you choose to draw a card (enter 0), the game will simulate drawing a card from the deck and add it to your hand.
-   -> If you choose to play a card (enter 1), you will be prompted to enter the index of the card you want to play from your hand. After playing the card, the game will update the top 
+   -> If you choose to play a card (enter index of card), the selected card from your hand will be played. After playing the card, the game will update the top 
       card on the discard pile, and it will be the next player's turn.
 6. Repeat step 5 for each player's turn. The game will continue until a player wins by emptying their hand.
 

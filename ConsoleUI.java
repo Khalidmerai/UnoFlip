@@ -42,39 +42,21 @@ public class ConsoleUI {
     public int getPlayOrDrawChoice() {
         int choice;
         do {
-            System.out.println("Enter 0 to draw a card or 1 to play a card: ");
+            System.out.println("Enter 0 to draw a card or the index of the card to play: ");
             while (!scanner.hasNextInt()) {
-                System.out.println("Invalid input. Enter 0 to draw a card or 1 to play a card: ");
+                System.out.println("Invalid input. Enter 0 to draw a card or the index of the card to play: ");
                 scanner.next();
             }
             choice = scanner.nextInt();
-        } while (choice < 0 || choice > 1);
+        } while (choice < 0);
         return choice;
-    }
-
-    public int getCardToPlay(Player currentPlayer) {
-        int cardIndex;
-        do {
-            System.out.println("Enter the index of the card you want to play: ");
-            while (!scanner.hasNextInt()) {
-                System.out.println("Invalid input. Enter the index of the card you want to play: ");
-                scanner.next();
-            }
-            cardIndex = scanner.nextInt();
-        } while (cardIndex < 0 || cardIndex >= currentPlayer.getCards().size());
-        return cardIndex;
-    }
-
-    public Card selectCardToPlay(Player currentPlayer) {
-        int cardIndex = getCardToPlay(currentPlayer);
-        return currentPlayer.getCards().get(cardIndex);
     }
 
     public void displayPlayerHand(Player player) {
         System.out.println(player.toString() + "'s Hand:");
         ArrayList<Card> cards = player.getCards();
         for (int i = 0; i < cards.size(); i++) {
-            System.out.println(i + ": " + cards.get(i).toString());
+            System.out.println((i + 1) + ": " + cards.get(i).toString());
         }
     }
 
