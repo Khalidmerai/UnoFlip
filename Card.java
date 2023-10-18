@@ -113,7 +113,7 @@ public class Card {
     public String toString() {
         // Return a readable representation of the card
         if (color == Color.WILD) {
-            return "Wild";
+            return "WILD";
         } else if (type == Type.NUMBER) {
             return color + " " + value;
         } else {
