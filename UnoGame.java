@@ -103,6 +103,7 @@ public class UnoGame {
     public void reverseDirection() {
         reverseDirection = !reverseDirection;
     }
+    public boolean isReverseDirection() {return reverseDirection;}
 
     public void skipNextPlayer() {
         nextPlayer();
@@ -172,6 +173,7 @@ public class UnoGame {
     public Card getTopCard() {
         return discardPile.get(discardPile.size() - 1);
     }
+    public Card.Color getCurrentColor() {return currentColor;}
 
     public void displayTopCard() {
         Card topCard = getTopCard();
