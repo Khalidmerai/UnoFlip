@@ -50,5 +50,8 @@ public class Deck {
             return null;
         }
     }
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
 }
 
