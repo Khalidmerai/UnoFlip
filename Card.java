@@ -7,11 +7,12 @@ public class Card {
     private Color color;
     private Type type;
     private int value;
+    private Color wildColor;
 
     /**
      * Enumeration for card colors.
      */
-    public enum Color { BLUE, GREEN, YELLOW, RED, WILD }
+    public enum Color { BLUE, GREEN, YELLOW, RED, WILD;}
 
     /**
      * Enumeration for card types.
@@ -38,6 +39,9 @@ public class Card {
      */
     public Color getColor() {
         return color;
+    }
+    public Color getWildColor() {
+        return wildColor;
     }
 
     /**
@@ -98,9 +102,8 @@ public class Card {
      * @param wildColor The color to set for the played Wild card.
      */
     public void setWildColor(Color wildColor) {
-        if (color == Color.WILD) {
-            // Set the color for the played Wild card
-            color = wildColor;
+        if (type == Type.WILD && color == Color.WILD) {
+            this.wildColor = wildColor;
         }
     }
 
@@ -120,6 +123,15 @@ public class Card {
             return color + " " + type;
         }
     }
+    public static boolean contains(String color) {
+        for (Color c : Color.values()) {
+            if (c.name().equals(color)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     /**
      * Checks if this card is equal to another object.

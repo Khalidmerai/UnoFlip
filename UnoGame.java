@@ -11,6 +11,8 @@ public class UnoGame {
     private int currentPlayerIndex;
     private boolean reverseDirection;
     private Card.Color currentColor;
+    private Card.Color ui;
+
 
     /**
      * Constructs an UnoGame with the given players and deck and initializes the game.
@@ -60,18 +62,17 @@ public class UnoGame {
      * @param player The player making the move.
      * @param card   The card to be played.
      */
-    public void playCard(Player player, Card card) {
+    public void playCard(Player player, Card card, ConsoleUI ui) {
         if (isValidPlay(player, card)) {
             player.removeCard(card.getValue());
             discardPile.add(card);
             currentColor = card.getColor();
-            handleSpecialCard(card, player);
+            handleSpecialCard(card, player,currentColor, ui);
             nextPlayer();
         } else {
             System.out.println("Invalid move. Please try again.");
         }
     }
-
     /**
      * Deals the initial set of cards to all players at the start of the game.
      */
@@ -134,21 +135,34 @@ public class UnoGame {
     /**
      * Handles special actions associated with certain Uno cards.
      *
-     * @param card         The card being played.
-     * @param currentPlayer The current player.
+     * @param card   The card being played.
+     * @param player The current player.
+     * @param ui
      */
-    public void handleSpecialCard(Card card, Player currentPlayer) {
+    public void handleSpecialCard(Card card, Player player, Card.Color chosenColor, ConsoleUI ui) {
         if (card.getType() == Card.Type.REVERSE) {
             reverseDirection();
         } else if (card.getType() == Card.Type.SKIP) {
             skipNextPlayer();
         } else if (card.getType() == Card.Type.WILD_DRAW_TWO) {
-            drawTwoNextPlayer();
+            // Check for stacking Draw Two cards
+            if (getTopCard().getType() == Card.Type.WILD_DRAW_TWO) {
+                drawTwoNextPlayer(); // Stack the effect
+            } else {
+                drawTwoNextPlayer(); // Apply the effect
+            }
         } else if (card.getType() == Card.Type.WILD) {
-            // Handle Wild card actions
-            setWildColor(currentPlayer, Card.Color.BLUE); // Example: Set Wild card color to BLUE
+            card.setWildColor(chosenColor);
+            // Handle Wild card actions, if any
         }
     }
+
+
+
+
+
+
+
 
     /**
      * Reverses the direction of play in the game.
@@ -279,5 +293,27 @@ public class UnoGame {
             }
         }
         return null; // No winner yet
+    }
+    public void endGame() {
+        // Calculate scores at the end of the game
+        for (Player player : players) {
+            int score = calculateScore(player);
+            player.increaseScore(score);
+        }
+    }
+
+    private int calculateScore(Player player) {
+        int score = 0;
+
+        // Add your scoring logic here, e.g., subtract points for unplayed cards
+        for (Card card : player.getCards()) {
+            score -= card.getValue();
+        }
+
+        return score;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
     }
 }

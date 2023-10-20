@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class ConsoleUI {
     private Scanner scanner;
+    private Card.Color wildCardColor;
+
 
     public ConsoleUI() {
         scanner = new Scanner(System.in);
@@ -59,8 +61,48 @@ public class ConsoleUI {
             System.out.println((i + 1) + ": " + cards.get(i).toString());
         }
     }
+    public Card.Color chooseWildColor() {
+        Card.Color wildCardColor = null;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Choose a color for the Wild card (BLUE, GREEN, YELLOW, RED): ");
+        String colorInput = scanner.next().toUpperCase();
+
+        switch (colorInput) {
+            case "BLUE":
+                wildCardColor = Card.Color.BLUE;
+                break;
+            case "GREEN":
+                wildCardColor = Card.Color.GREEN;
+                break;
+            case "YELLOW":
+                wildCardColor = Card.Color.YELLOW;
+                break;
+            case "RED":
+                wildCardColor = Card.Color.RED;
+                break;
+            default:
+                System.out.println("Invalid color choice. Please choose from BLUE, GREEN, YELLOW, or RED.");
+                wildCardColor = chooseWildColor(); // Recursively prompt for a valid color
+        }
+
+        return wildCardColor;
+    }
+
+
+
 
     public void close() {
         scanner.close();
     }
+
+    public void displayPlayerScores(ArrayList<Player> players) {
+        System.out.println("Game over! Scores:");
+        for (Player player : players) {
+            System.out.println(player.toString() + ": " + player.getScore());
+        }
+    }
+
+
+
 }
