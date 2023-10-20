@@ -18,7 +18,8 @@ public class Main {
         // Implement the game loop
         while (!unoGame.hasGameEnded()) {
             Player currentPlayer = unoGame.getCurrentPlayer();
-            ui.displayPlayerHand(currentPlayer);
+
+            ui.displayPlayerHand(currentPlayer); // Display the player's hand
 
             int choice = ui.getPlayOrDrawChoice();
             if (choice == 0) {
@@ -26,21 +27,20 @@ public class Main {
                 unoGame.displayTopCard();
             } else {
                 int cardIndex = choice - 1; // Adjust for 1-based indexing
+
                 if (cardIndex >= 0 && cardIndex < currentPlayer.getCards().size()) {
                     Card cardToPlay = currentPlayer.getCards().get(cardIndex);
 
                     if (cardToPlay.getType() == Card.Type.WILD) {
-                        Card.Color chosenColor = ui.chooseWildColor(); // Get the player's chosen color
-                        unoGame.handleSpecialCard(cardToPlay, currentPlayer, chosenColor, ui);
+                        Card.Color chosenColor = ui.chooseWildColor();
+                        unoGame.handleSpecialCard(cardToPlay, currentPlayer, chosenColor,ui);
                     } else {
                         unoGame.playCard(currentPlayer, cardToPlay, ui);
                     }
 
-                    //need to identify if the card is chosen for the reverse, it need to reverse
-                    if(cardToPlay.getType() == Card.Type.REVERSE){
+                    // Check if the card is chosen for the reverse, it needs to reverse
+                    if (cardToPlay.getType() == Card.Type.REVERSE) {
                         unoGame.reverseDirection();
-                    } else{
-                        unoGame.playCard(currentPlayer, cardToPlay, ui);
                     }
 
                     unoGame.displayTopCard();
@@ -56,6 +56,5 @@ public class Main {
 
         ui.close();
     }
-
-
 }
+

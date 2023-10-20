@@ -88,10 +88,14 @@ public class ConsoleUI {
 
         return wildCardColor;
     }
-
-
-
-
+    public void displayGameState(Player currentPlayer, Card topCard) {
+        System.out.println("Top card: " + topCard.toString());
+        System.out.println(currentPlayer.getName() + "'s Hand:");
+        ArrayList<Card> playerCards = currentPlayer.getCards();
+        for (int i = 0; i < playerCards.size(); i++) {
+            System.out.println((i + 1) + ": " + playerCards.get(i).toString());
+        }
+    }
     public void close() {
         scanner.close();
     }

@@ -1,90 +1,82 @@
 import java.util.ArrayList;
 
 public class Player {
-
     private ArrayList<Card> cards;
     private String playerName;
-    private int score; // Add a score field
+    private int score;
 
-
-    /**
-     * Constructor
-     */
-    public Player(String playerName){
+    public Player(String playerName) {
         this.playerName = playerName;
         cards = new ArrayList<Card>();
-        score = 0; // Initialize the score
+        score = 0;
+    }
+    private boolean skipped;
 
+    public boolean isSkipped() {
+        return skipped;
     }
 
-    /**
-     * returns the number of card
-     * @return
-     */
-    public int numCard(){
+    public void skip() {
+        skipped = true;
+    }
+
+    public void unskip() {
+        skipped = false;
+    }
+    public int getNumCards() {
         return cards.size();
     }
 
     public ArrayList<Card> getCards() {
         return cards;
     }
-    public void increaseScore(int points) {
-        score += points;
+
+    public void increaseScore(int scoreChange) {
+        score += scoreChange;
     }
 
-    public void decreaseScore(int points) {
-        score -= points;
+    public void decreaseScore(int scoreChange) {
+        score -= scoreChange;
     }
 
-    /**
-     * player need to pick a card
-     * @param c
-     */
-    public void pickCard(Card c){
-        cards.add(c);
+    public void addCard(Card card) {
+        cards.add(card);
     }
 
-    /**
-     * player need to remove a card
-     * @param c
-     */
     public void removeCard(int index) {
         if (index >= 0 && index < cards.size()) {
             cards.remove(index);
         } else {
-            System.out.println("Invalid index for card removal.");
+            throw new IndexOutOfBoundsException("Invalid index for card removal.");
         }
     }
 
-    /**
-     * player says uno if they only have 1 card
-     */
     public void sayUno() {
-
-        if (cards.size()==1){
+        if (cards.size() == 1) {
             System.out.println("Uno");
         }
     }
 
-    /**
-     * to check if the player won
-     * @return
-     */
     public boolean hasWon() {
-        if(cards.isEmpty()) {
-            System.out.println("Winner");
+        if (cards.isEmpty()) {
+            System.out.println("Winner: " + playerName);
             return true;
         }
         return false;
     }
-    /**
-     * text representation of player
-     */
-    public String toString() {
-        return this.playerName;
+
+    public String getName() {
+        return playerName;
+    }
+    public void pickCard(Card card) {
+        addCard(card);
     }
 
     public int getScore() {
         return score;
+    }
+    @Override
+    public String toString() {
+        return playerName;
     }
 }
