@@ -202,6 +202,15 @@ public class UnoGame {
     }
 
     /**
+     * Gets the current player index.
+     *
+     * @return The current player index.
+     */
+    public int getCurrentPlayerIndex() {
+        return currentPlayerIndex;
+    }
+
+    /**
      * Makes the next player draw two cards.
      */
     public void drawTwoNextPlayer() {
@@ -262,6 +271,15 @@ public class UnoGame {
         return discardPile.get(discardPile.size() - 1);
     }
     public Card.Color getCurrentColor() {return currentColor;}
+
+    /**
+     * Gets the discard pile.
+     *
+     * @return The discard pile.
+     */
+    public ArrayList<Card> getDiscardPile() {
+        return discardPile;
+    }
 
     /**
      * Displays the top card on the discard pile.
