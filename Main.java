@@ -36,6 +36,13 @@ public class Main {
                         unoGame.playCard(currentPlayer, cardToPlay, ui);
                     }
 
+                    //need to identify if the card is chosen for the reverse, it need to reverse
+                    if(cardToPlay.getType() == Card.Type.REVERSE){
+                        unoGame.reverseDirection();
+                    } else{
+                        unoGame.playCard(currentPlayer, cardToPlay, ui);
+                    }
+
                     unoGame.displayTopCard();
                 } else {
                     System.out.println("Invalid card index. Please try again.");
