@@ -273,6 +273,15 @@ public class UnoGame {
     public Card.Color getCurrentColor() {return currentColor;}
 
     /**
+     * Gets the discard pile.
+     *
+     * @return The discard pile.
+     */
+    public ArrayList<Card> getDiscardPile() {
+        return discardPile;
+    }
+
+    /**
      * Displays the top card on the discard pile.
      */
     public void displayTopCard() {
