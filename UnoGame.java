@@ -202,6 +202,15 @@ public class UnoGame {
     }
 
     /**
+     * Gets the current player index.
+     *
+     * @return The current player index.
+     */
+    public int getCurrentPlayerIndex() {
+        return currentPlayerIndex;
+    }
+
+    /**
      * Makes the next player draw two cards.
      */
     public void drawTwoNextPlayer() {
