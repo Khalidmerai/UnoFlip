@@ -1,6 +1,9 @@
 import java.util.ArrayList;
-import java.util.Collections;
-
+/**
+ * The UnoGame class represents a game of Uno, with players, a deck of Uno cards,
+ * and game logic for playing and managing the game.
+ * @author Khalid Merai 101159203
+ */
 public class UnoGame {
     private ArrayList<Player> players;
     private Deck deck;
@@ -9,6 +12,12 @@ public class UnoGame {
     private boolean reverseDirection;
     private Card.Color currentColor;
 
+    /**
+     * Constructs an UnoGame with the given players and deck and initializes the game.
+     *
+     * @param players The list of players in the game.
+     * @param deck    The deck of Uno cards to use for the game.
+     */
     public UnoGame(ArrayList<Player> players, Deck deck) {
         this.players = players;
         this.deck = deck;
@@ -23,10 +32,19 @@ public class UnoGame {
         startGame();
     }
 
+    /**
+     * Starts the Uno game by setting the initial card and displaying it.
+     */
     public void startGame() {
-        setInitialCard(); // Set the initial card
+        setInitialCard();
         displayTopCard();
     }
+
+    /**
+     * Checks if the Uno game has ended, i.e., if any player has won.
+     *
+     * @return True if a player has won, otherwise false.
+     */
     public boolean hasGameEnded() {
         for (Player player : players) {
             if (player.hasWon()) {
@@ -36,7 +54,12 @@ public class UnoGame {
         return false;
     }
 
-
+    /**
+     * Plays a card on the discard pile if it's a valid move.
+     *
+     * @param player The player making the move.
+     * @param card   The card to be played.
+     */
     public void playCard(Player player, Card card) {
         if (isValidPlay(player, card)) {
             player.removeCard(card.getValue());
@@ -49,10 +72,13 @@ public class UnoGame {
         }
     }
 
+    /**
+     * Deals the initial set of cards to all players at the start of the game.
+     */
     public void dealInitialCards() {
         for (Player player : players) {
             for (int i = 0; i < 7; i++) {
-                Card randomCard = deck.drawRandomCard(); // Modify the Deck class to add a drawRandomCard method
+                Card randomCard = deck.drawRandomCard();
                 player.pickCard(randomCard);
             }
         }
@@ -60,6 +86,11 @@ public class UnoGame {
     }
 
 
+    /**
+     * Draws a card for the given player and takes appropriate actions based on the drawn card.
+     *
+     * @param player The player drawing the card.
+     */
     public void drawCard(Player player) {
         Card drawnCard = deck.drawCard();
         player.pickCard(drawnCard);
@@ -72,12 +103,25 @@ public class UnoGame {
         }
     }
 
+    /**
+     * Checks if a card can be played by the current player based on the rules of Uno.
+     *
+     * @param player The player attempting to play a card.
+     * @param card   The card to be played.
+     * @return True if the card can be played, otherwise false.
+     */
     public boolean isValidPlay(Player player, Card card) {
         Card topCard = getTopCard();
         return card.getColor() == currentColor || card.getValue() == topCard.getValue() ||
                 card.getColor() == Card.Color.WILD || topCard.getColor() == Card.Color.WILD;
     }
 
+    /**
+     * Checks if the current player has any playable cards in their hand.
+     *
+     * @param player The current player.
+     * @return True if the player has a playable card, otherwise false.
+     */
     public boolean canPlayCard(Player player) {
         for (Card card : player.getCards()) {
             if (isValidPlay(player, card)) {
@@ -87,6 +131,12 @@ public class UnoGame {
         return false;
     }
 
+    /**
+     * Handles special actions associated with certain Uno cards.
+     *
+     * @param card         The card being played.
+     * @param currentPlayer The current player.
+     */
     public void handleSpecialCard(Card card, Player currentPlayer) {
         if (card.getType() == Card.Type.REVERSE) {
             reverseDirection();
@@ -100,10 +150,16 @@ public class UnoGame {
         }
     }
 
+    /**
+     * Reverses the direction of play in the game.
+     */
     public void reverseDirection() {
         reverseDirection = !reverseDirection;
     }
 
+    /**
+     * Skips the next player's turn.
+     */
     public void skipNextPlayer() {
         nextPlayer();
     }
@@ -121,12 +177,17 @@ public class UnoGame {
         }
     }
 
+    /**
+     * Gets the current player in the game.
+     *
+     * @return The current player.
+     */
     public Player getCurrentPlayer() {
         return players.get(currentPlayerIndex);
     }
 
     /**
-     * Make the next player draw two cards.
+     * Makes the next player draw two cards.
      */
     public void drawTwoNextPlayer() {
         Player nextPlayer = getNextPlayer();
@@ -139,6 +200,11 @@ public class UnoGame {
         nextPlayer();
     }
 
+    /**
+     * Gets the next player in the game based on the current direction of play.
+     *
+     * @return The next player.
+     */
     public Player getNextPlayer() {
         int nextPlayerIndex = currentPlayerIndex;
         if (reverseDirection) {
@@ -155,6 +221,9 @@ public class UnoGame {
         return players.get(nextPlayerIndex);
     }
 
+    /**
+     * Moves the game to the next player's turn based on the current direction of play.
+     */
     public void nextPlayer() {
         if (reverseDirection) {
             currentPlayerIndex--;
@@ -169,14 +238,26 @@ public class UnoGame {
         }
     }
 
+    /**
+     * Gets the top card on the discard pile.
+     *
+     * @return The top card on the discard pile.
+     */
     public Card getTopCard() {
         return discardPile.get(discardPile.size() - 1);
     }
 
+    /**
+     * Displays the top card on the discard pile.
+     */
     public void displayTopCard() {
         Card topCard = getTopCard();
         System.out.println("Top card: " + topCard.toString());
     }
+
+    /**
+     * Sets the initial card to start the game.
+     */
     public void setInitialCard() {
         // Draw a random card from the deck and set it as the initial card
         Card initialCard = deck.drawRandomCard();
@@ -185,6 +266,12 @@ public class UnoGame {
             currentColor = initialCard.getColor();
         }
     }
+
+    /**
+     * Gets the player who has won the game, if any.
+     *
+     * @return The winning player, or null if there is no winner yet.
+     */
     public Player getWinner() {
         for (Player player : players) {
             if (player.hasWon()) {
@@ -193,6 +280,4 @@ public class UnoGame {
         }
         return null; // No winner yet
     }
-
-
 }
