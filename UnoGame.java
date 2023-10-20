@@ -67,12 +67,13 @@ public class UnoGame {
             player.removeCard(card.getValue());
             discardPile.add(card);
             currentColor = card.getColor();
-            handleSpecialCard(card, player,currentColor, ui);
+            handleSpecialCard(card, player, currentColor, ui);
             nextPlayer();
         } else {
             System.out.println("Invalid move. Please try again.");
         }
     }
+
     /**
      * Deals the initial set of cards to all players at the start of the game.
      */
@@ -152,16 +153,18 @@ public class UnoGame {
                 drawTwoNextPlayer(); // Apply the effect
             }
         } else if (card.getType() == Card.Type.WILD) {
-            card.setWildColor(chosenColor);
-            // Handle Wild card actions, if any
+            if (chosenColor == null) {
+                chosenColor = ui.chooseWildColor(); // Allow the player to choose a color
+            }
+            card.setWildColor(chosenColor); // Set the chosen color for the Wild card
+            currentColor = chosenColor; // Update the current color
         }
     }
 
-
-
-
-
-
+    // Add the following method to skip the next player's turn
+    public void skipNextPlayer() {
+        nextPlayer();
+    }
 
 
     /**
@@ -171,13 +174,6 @@ public class UnoGame {
         reverseDirection = !reverseDirection;
     }
     public boolean isReverseDirection() {return reverseDirection;}
-
-    /**
-     * Skips the next player's turn.
-     */
-    public void skipNextPlayer() {
-        nextPlayer();
-    }
 
     /**
      * Sets the color for a played Wild card.
@@ -260,7 +256,14 @@ public class UnoGame {
                 currentPlayerIndex = 0;
             }
         }
+
+        // Check if the next player has been skipped and skip their turn
+        if (players.get(currentPlayerIndex).isSkipped()) {
+            players.get(currentPlayerIndex).unskip(); // Unskip the player
+            nextPlayer();
+        }
     }
+
 
     /**
      * Gets the top card on the discard pile.
