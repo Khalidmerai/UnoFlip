@@ -28,7 +28,14 @@ public class Main {
                 int cardIndex = choice - 1; // Adjust for 1-based indexing
                 if (cardIndex >= 0 && cardIndex < currentPlayer.getCards().size()) {
                     Card cardToPlay = currentPlayer.getCards().get(cardIndex);
-                    unoGame.playCard(currentPlayer, cardToPlay);
+
+                    if (cardToPlay.getType() == Card.Type.WILD) {
+                        Card.Color chosenColor = ui.chooseWildColor(); // Get the player's chosen color
+                        unoGame.handleSpecialCard(cardToPlay, currentPlayer, chosenColor, ui);
+                    } else {
+                        unoGame.playCard(currentPlayer, cardToPlay, ui);
+                    }
+
                     unoGame.displayTopCard();
                 } else {
                     System.out.println("Invalid card index. Please try again.");
@@ -36,10 +43,12 @@ public class Main {
             }
         }
 
-        // Display the winner and other game stats
-        Player winner = unoGame.getWinner();
-        System.out.println("Game over! The winner is: " + winner);
+        // Game has ended, calculate scores and display them
+        unoGame.endGame();
+        ui.displayPlayerScores(unoGame.getPlayers());
 
         ui.close();
     }
+
+
 }

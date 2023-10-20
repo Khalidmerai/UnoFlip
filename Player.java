@@ -1,10 +1,11 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Player {
 
     private ArrayList<Card> cards;
     private String playerName;
+    private int score; // Add a score field
+
 
     /**
      * Constructor
@@ -12,6 +13,8 @@ public class Player {
     public Player(String playerName){
         this.playerName = playerName;
         cards = new ArrayList<Card>();
+        score = 0; // Initialize the score
+
     }
 
     /**
@@ -24,6 +27,13 @@ public class Player {
 
     public ArrayList<Card> getCards() {
         return cards;
+    }
+    public void increaseScore(int points) {
+        score += points;
+    }
+
+    public void decreaseScore(int points) {
+        score -= points;
     }
 
     /**
@@ -38,8 +48,12 @@ public class Player {
      * player need to remove a card
      * @param c
      */
-    public void removeCard(int c){
-        cards.remove(c);
+    public void removeCard(int index) {
+        if (index >= 0 && index < cards.size()) {
+            cards.remove(index);
+        } else {
+            System.out.println("Invalid index for card removal.");
+        }
     }
 
     /**
@@ -70,4 +84,7 @@ public class Player {
         return this.playerName;
     }
 
+    public int getScore() {
+        return score;
+    }
 }

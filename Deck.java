@@ -4,10 +4,9 @@ import java.util.Random;
 
 public class Deck {
     private ArrayList<Card> cards = new ArrayList<>(108);
-    private int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}; // Regular cards (skip duplicates)
+    private int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9,0}; // Regular cards (skip duplicates)
     private int[] specialNumbers = {2, 2, 4, 4}; // Special cards (+2 and +4)
     private ArrayList<Card> decks = new ArrayList<>();
-
 
     public Deck() {
         // Create regular cards (numbers and action cards) for each color
@@ -33,14 +32,9 @@ public class Deck {
             return cards.remove(randomIndex);
         } else {
             // Handle the case when the deck is empty, e.g., by shuffling the discard pile into the deck.
-            // You can also create a new deck if needed.
         }
         return null; // Return null if the deck is empty and no cards can be drawn.
     }
-
-
-
-
     public boolean isEmpty() {
         return cards.isEmpty();
     }
@@ -53,7 +47,6 @@ public class Deck {
         if (!cards.isEmpty()) {
             return cards.remove(cards.size() - 1);
         } else {
-            // You may want to handle this case differently, such as reshuffling the discard pile.
             return null;
         }
     }
