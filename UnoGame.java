@@ -170,6 +170,7 @@ public class UnoGame {
     public void reverseDirection() {
         reverseDirection = !reverseDirection;
     }
+    public boolean isReverseDirection() {return reverseDirection;}
 
     /**
      * Skips the next player's turn.
@@ -260,6 +261,7 @@ public class UnoGame {
     public Card getTopCard() {
         return discardPile.get(discardPile.size() - 1);
     }
+    public Card.Color getCurrentColor() {return currentColor;}
 
     /**
      * Displays the top card on the discard pile.
