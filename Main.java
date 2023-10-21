@@ -25,6 +25,7 @@ public class Main {
             if (choice == 0) {
                 unoGame.drawCard(currentPlayer);
                 unoGame.displayTopCard();
+                //add draw handler (if playable then give option to play card (no draw option) or next turn)
             } else {
                 int cardIndex = choice - 1; // Adjust for 1-based indexing
 

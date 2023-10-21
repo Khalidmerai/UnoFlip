@@ -8,7 +8,7 @@ public class PlayerTest {
         Player player = new Player("Alice");
         assertNotNull(player);
         assertEquals("Alice", player.toString());
-        assertEquals(0, player.numCard());
+        assertEquals(0, player.getNumCards());
         assertEquals(0, player.getScore());
         player.pickCard(new Card(Card.Color.BLUE, Card.Type.NUMBER, 7));
         assertFalse(player.hasWon());
@@ -19,10 +19,10 @@ public class PlayerTest {
         Player player = new Player("Bob");
         Card card = new Card(Card.Color.RED, Card.Type.NUMBER, 5);
         player.pickCard(card);
-        assertEquals(1, player.numCard());
+        assertEquals(1, player.getNumCards());
 
         player.removeCard(0);
-        assertEquals(0, player.numCard());
+        assertEquals(0, player.getNumCards());
     }
 
     @Test
