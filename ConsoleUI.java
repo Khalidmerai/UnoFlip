@@ -1,15 +1,24 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * ConsoleUI class to showcase the user interface of the UNO game
+ */
 public class ConsoleUI {
     private Scanner scanner;
     private Card.Color wildCardColor;
 
-
+    /**
+     * Public constructor of Console UI
+     */
     public ConsoleUI() {
         scanner = new Scanner(System.in);
     }
 
+    /**
+     * Method to get how many players are in the game
+     * @return the number of players
+     */
     public int getNumberOfPlayers() {
         int numPlayers = 0;
         boolean validInput = false;
@@ -32,6 +41,11 @@ public class ConsoleUI {
         return numPlayers;
     }
 
+    /**
+     * getter method of the player names
+     * @param numPlayers
+     * @return name for each player
+     */
     public String[] getPlayerNames(int numPlayers) {
         String[] playerNames = new String[numPlayers];
         for (int i = 0; i < numPlayers; i++) {
@@ -41,6 +55,10 @@ public class ConsoleUI {
         return playerNames;
     }
 
+    /**
+     * method for a player to choose an option to play their card or draw from the deck
+     * @return 0 to draw the card from deck or 1 to play their card
+     */
     public int getPlayOrDrawChoice() {
         int choice;
         do {
@@ -54,6 +72,10 @@ public class ConsoleUI {
         return choice;
     }
 
+    /**
+     * method to display the player's card
+     * @param player the current player
+     */
     public void displayPlayerHand(Player player) {
         System.out.println(player.toString() + "'s Hand:");
         ArrayList<Card> cards = player.getCards();
@@ -61,6 +83,11 @@ public class ConsoleUI {
             System.out.println((i + 1) + ": " + cards.get(i).toString());
         }
     }
+
+    /**
+     * Method for the player to choose the colour for the Wild card
+     * @return the colours for the Wild card
+     */
     public Card.Color chooseWildColor() {
         Card.Color wildCardColor = null;
         Scanner scanner = new Scanner(System.in);
@@ -100,6 +127,10 @@ public class ConsoleUI {
         scanner.close();
     }
 
+    /**
+     * Method to display the player's score
+     * @param players current player's score
+     */
     public void displayPlayerScores(ArrayList<Player> players) {
         System.out.println("Game over! Scores:");
         for (Player player : players) {

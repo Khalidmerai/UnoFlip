@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+/**
+ * The main class to initialize the Uno game
+ */
 public class Main {
     public static void main(String[] args) {
         ConsoleUI ui = new ConsoleUI();
