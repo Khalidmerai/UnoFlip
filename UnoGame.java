@@ -64,11 +64,16 @@ public class UnoGame {
      */
     public void playCard(Player player, Card card, ConsoleUI ui) {
         if (isValidPlay(player, card)) {
-            player.removeCard(card.getValue());
-            discardPile.add(card);
-            currentColor = card.getColor();
-            handleSpecialCard(card, player, currentColor, ui);
-            nextPlayer();
+            int cardIndex = player.getCards().indexOf(card);
+            if (cardIndex >= 0) {
+                player.removeCard(cardIndex);
+                discardPile.add(card);
+                currentColor = card.getColor();
+                handleSpecialCard(card, player, currentColor, ui);
+                nextPlayer();
+            } else {
+                System.out.println("Invalid move. Please try again.");
+            }
         } else {
             System.out.println("Invalid move. Please try again.");
         }
