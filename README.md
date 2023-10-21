@@ -1,9 +1,9 @@
 # UnoFlip
-**AUTHORS AND ACKNOWLEDGEMENT**
+#AUTHORS AND ACKNOWLEDGEMENT
 
 This program reproduces a simplified version of the card game UNO Flip. This program was made for the SYSC 3110 team project, by group 15, which consists of Khalid Merai, Scharara Islam, Marina Latif and Abdulrahman Aldayel.
 
-How to Play UNO using the console interface:
+#How to Play UNO using the console interface:
 1. Run the Class Main
 2. Enter the number of Players : (2-4)
 3. Enter the name of Players
@@ -16,7 +16,8 @@ How to Play UNO using the console interface:
 
 
 
-**Game Rules**
+#Game Rules
+
 Uno has a few simple rules:
 1. The game starts with a specified number of players (2-4).
 2. Each player is dealt 7 cards from the Uno deck.
@@ -27,7 +28,7 @@ Uno has a few simple rules:
 7. The game continues until one player has no cards left or the deck is empty.
 
 
-**Project Structure**
+#Project Structure
 The project consists of the following Java classes:
 
 UnoGame.java: The main Uno game class that manages the game logic.
