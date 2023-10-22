@@ -1,3 +1,7 @@
+package SRC;
+
+import SRC.Card;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -35,7 +39,7 @@ public class ConsoleUI {
     public String[] getPlayerNames(int numPlayers) {
         String[] playerNames = new String[numPlayers];
         for (int i = 0; i < numPlayers; i++) {
-            System.out.print("Enter the name for Player " + (i + 1) + ": ");
+            System.out.print("Enter the name for SRC.Player " + (i + 1) + ": ");
             playerNames[i] = scanner.next();
         }
         return playerNames;

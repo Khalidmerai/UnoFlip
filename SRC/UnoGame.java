@@ -1,6 +1,12 @@
+package SRC;
+
+import SRC.Card;
+import SRC.ConsoleUI;
+import SRC.Deck;
+
 import java.util.ArrayList;
 /**
- * The UnoGame class represents a game of Uno, with players, a deck of Uno cards,
+ * The SRC.UnoGame class represents a game of Uno, with players, a deck of Uno cards,
  * and game logic for playing and managing the game.
  * @author Khalid Merai 101159203
  */
@@ -15,7 +21,7 @@ public class UnoGame {
 
 
     /**
-     * Constructs an UnoGame with the given players and deck and initializes the game.
+     * Constructs an SRC.UnoGame with the given players and deck and initializes the game.
      *
      * @param players The list of players in the game.
      * @param deck    The deck of Uno cards to use for the game.

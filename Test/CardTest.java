@@ -1,7 +1,7 @@
 package Test;
 
+import SRC.Card;
 import org.junit.jupiter.api.Test;
-import src.Card;
 
 
 import java.util.ArrayList;
@@ -106,11 +106,11 @@ public class CardTest {
     }
 
     /**
-     * Test for the Card constructor.
+     * Test for the SRC.Card constructor.
      */
     @Test
     public void testCardConstructor() {
-        // Test the Card constructor for correctness.
+        // Test the SRC.Card constructor for correctness.
         Card card = new Card(Card.Color.BLUE, Card.Type.NUMBER, 5);
         assertEquals(Card.Color.BLUE, card.getColor());
         assertEquals(Card.Type.NUMBER, card.getType());

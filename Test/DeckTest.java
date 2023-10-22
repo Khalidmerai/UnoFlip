@@ -3,8 +3,8 @@ package Test;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
-import src.Card;
-import src.Deck;
+import SRC.Card;
+import SRC.Deck;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
- * JUnit test class for the Deck class.
+ * JUnit test class for the SRC.Deck class.
  */
 class DeckTest {
     private Deck deck;

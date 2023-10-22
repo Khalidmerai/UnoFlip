@@ -1,8 +1,8 @@
 package Test;
 
 import org.junit.jupiter.api.Test;
-import src.Card;
-import src.Player;
+import SRC.Card;
+import SRC.Player;
 
 import java.util.ArrayList;
 
