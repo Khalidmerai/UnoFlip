@@ -16,7 +16,8 @@ This program reproduces a simplified version of the card game UNO Flip. This pro
 
 
 
-#Game Rules
+Game Rules
+---------------------------------------
 
 Uno has a few simple rules:
 1. The game starts with a specified number of players (2-4).
@@ -28,19 +29,36 @@ Uno has a few simple rules:
 7. The game continues until one player has no cards left or the deck is empty.
 
 
-#Project Structure
+Project Structure
+---------------------------------------
+
 The project consists of the following Java classes:
 
 SRC.UnoGame.java: The main Uno game class that manages the game logic.
+
 SRC.Card.java: Represents Uno cards with color, type, and value.
+
 SRC.Deck.java: Represents the Uno deck and provides card drawing and shuffling.
+
 SRC.Player.java: Represents Uno players and their hand of cards.
+
 SRC.ConsoleUI.java: Handles user interaction through the console, including player input and game output.
+
 CardTest.java: Contains unit tests for the SRC.Card class to ensure card-related functionality.
+
 SRC.Main.java: The entry point of the Uno game. It initializes the game and starts the gameplay.
 
-Contributions:
-Khalid Merai - SRC.UnoGame.java, added a few methods in card.java and SRC.ConsoleUI.java and helped with                the junit testing
+BREAK DOWN OF TASKS FOR MILESTONE 1
+---------------------------------------
+
+Khalid Merai - SRC.UnoGame.java, added a few methods in card.java and SRC.ConsoleUI.java and helped with the junit testing
+
+Scharara Islam - SRC.Player.java, SRC.Deck.java
+
+Marina Latif - SRC.Card.java 
+
+Abdulrahman Aldayel - SRC.Main.java, SRC.ConsoleUI.java
+
 
 
 
