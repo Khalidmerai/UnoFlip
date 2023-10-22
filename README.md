@@ -39,7 +39,8 @@ ConsoleUI.java: Handles user interaction through the console, including player i
 CardTest.java: Contains unit tests for the Card class to ensure card-related functionality.
 Main.java: The entry point of the Uno game. It initializes the game and starts the gameplay.
 
-
+Contributions:
+Khalid Merai - UnoGame.java, added a few methods in card.java and ConsoleUI.java and helped with                the junit testing
 
 
 
