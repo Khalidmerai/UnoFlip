@@ -4,7 +4,7 @@
 This program reproduces a simplified version of the card game UNO Flip. This program was made for the SYSC 3110 team project, by group 15, which consists of Khalid Merai, Scharara Islam, Marina Latif and Abdulrahman Aldayel.
 
 #How to Play UNO using the console interface:
-1. Run the Class Main
+1. Run the Class SRC.Main
 2. Enter the number of Players : (2-4)
 3. Enter the name of Players
 4. The game will display the top card on the discard pile, and each player's initial hand.
@@ -31,16 +31,16 @@ Uno has a few simple rules:
 #Project Structure
 The project consists of the following Java classes:
 
-UnoGame.java: The main Uno game class that manages the game logic.
-Card.java: Represents Uno cards with color, type, and value.
-Deck.java: Represents the Uno deck and provides card drawing and shuffling.
-Player.java: Represents Uno players and their hand of cards.
-ConsoleUI.java: Handles user interaction through the console, including player input and game output.
-CardTest.java: Contains unit tests for the Card class to ensure card-related functionality.
-Main.java: The entry point of the Uno game. It initializes the game and starts the gameplay.
+SRC.UnoGame.java: The main Uno game class that manages the game logic.
+SRC.Card.java: Represents Uno cards with color, type, and value.
+SRC.Deck.java: Represents the Uno deck and provides card drawing and shuffling.
+SRC.Player.java: Represents Uno players and their hand of cards.
+SRC.ConsoleUI.java: Handles user interaction through the console, including player input and game output.
+CardTest.java: Contains unit tests for the SRC.Card class to ensure card-related functionality.
+SRC.Main.java: The entry point of the Uno game. It initializes the game and starts the gameplay.
 
 Contributions:
-Khalid Merai - UnoGame.java, added a few methods in card.java and ConsoleUI.java and helped with                the junit testing
+Khalid Merai - SRC.UnoGame.java, added a few methods in card.java and SRC.ConsoleUI.java and helped with                the junit testing
 
 
 

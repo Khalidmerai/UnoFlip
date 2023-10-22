@@ -1,8 +1,12 @@
+package SRC;
+
+import SRC.Card;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * ConsoleUI class to showcase the user interface of the UNO game
+ * SRC.ConsoleUI class to showcase the user interface of the UNO game
  */
 public class ConsoleUI {
     private Scanner scanner;
@@ -49,7 +53,7 @@ public class ConsoleUI {
     public String[] getPlayerNames(int numPlayers) {
         String[] playerNames = new String[numPlayers];
         for (int i = 0; i < numPlayers; i++) {
-            System.out.print("Enter the name for Player " + (i + 1) + ": ");
+            System.out.print("Enter the name for SRC.Player " + (i + 1) + ": ");
             playerNames[i] = scanner.next();
         }
         return playerNames;
