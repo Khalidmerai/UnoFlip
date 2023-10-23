@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class UnoGameTest {
+class UnoGameTest {
 
     private UnoGame game;
     private ArrayList<Player> players;
@@ -34,6 +34,16 @@ public class UnoGameTest {
     }
 
     @Test
+    void testHasGameEnded() {
+        assertFalse(game.hasGameEnded());
+        int initialSize = players.get(0).getCards().size();
+        for (int i = 0; i < initialSize; i++) {
+            players.get(0).removeCard(0);  // Since every time we remove a card, the next card shifts to index 0
+        }
+        assertTrue(game.hasGameEnded());
+    }
+
+    @Test
     void testPlayCard() {
         Player currentPlayer = game.getCurrentPlayer();
         Card card = currentPlayer.getCards().get(0);
@@ -42,25 +52,18 @@ public class UnoGameTest {
     }
 
     @Test
+    void testDealInitialCards() {
+        for (Player player : players) {
+            assertEquals(7, player.getCards().size());
+        }
+    }
+
+    @Test
     void testDrawCard() {
         Player currentPlayer = game.getCurrentPlayer();
         int initialHandSize = currentPlayer.getCards().size();
         game.drawCard(currentPlayer);
         assertEquals(initialHandSize + 1, currentPlayer.getCards().size());
-    }
-
-    @Test
-    void testNextPlayer() {
-        Player currentPlayer = game.getCurrentPlayer();
-        game.nextPlayer();
-        assertNotEquals(currentPlayer, game.getCurrentPlayer());
-    }
-
-    @Test
-    void testReverseDirection() {
-        boolean initialDirection = game.isReverseDirection();
-        game.reverseDirection();
-        assertNotEquals(initialDirection, game.isReverseDirection());
     }
 
     @Test
@@ -74,25 +77,31 @@ public class UnoGameTest {
     }
 
     @Test
-    void testDealInitialCards() {
-        for (Player player : players) {
-            assertEquals(7, player.getCards().size());
-        }
+    void testReverseDirection() {
+        boolean initialDirection = game.isReverseDirection();
+        game.reverseDirection();
+        assertNotEquals(initialDirection, game.isReverseDirection());
     }
 
     @Test
-    void testHasGameEnded() {
-        assertFalse(game.hasGameEnded());
-        int initialSize = players.get(0).getCards().size();
-        for (int i = 0; i < initialSize; i++) {
-            players.get(0).removeCard(0);  // Since every time we remove a card, the next card shifts to index 0
-        }
-        assertTrue(game.hasGameEnded());
+    void testNextPlayer() {
+        Player currentPlayer = game.getCurrentPlayer();
+        game.nextPlayer();
+        assertNotEquals(currentPlayer, game.getCurrentPlayer());
     }
 
     @Test
     void testSetInitialCard() {
         assertNotNull(game.getTopCard());
+    }
+
+    @Test
+    void testGetWinner() {
+        int initialSize = players.get(0).getCards().size();
+        for (int i = 0; i < initialSize; i++) {
+            players.get(0).removeCard(0);  // Since every time we remove a card, the next card shifts to index 0
+        }
+        assertEquals(players.get(0), game.getWinner());
     }
 
     @Test
@@ -105,14 +114,5 @@ public class UnoGameTest {
         for (Player player : players) {
             assertTrue(player.getScore() <= 0);  // as scores are decremented for unplayed cards
         }
-    }
-
-    @Test
-    void testGetWinner() {
-        int initialSize = players.get(0).getCards().size();
-        for (int i = 0; i < initialSize; i++) {
-            players.get(0).removeCard(0);  // Since every time we remove a card, the next card shifts to index 0
-        }
-        assertEquals(players.get(0), game.getWinner());
     }
 }
