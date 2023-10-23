@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test class for UnoGame.
+ */
 class UnoGameTest {
 
     private UnoGame game;
@@ -25,6 +28,9 @@ class UnoGameTest {
         ui = new ConsoleUI();
     }
 
+    /**
+     * Test the startGame method to ensure that the game initializes properly.
+     */
     @Test
     void testStartGame() {
         assertNotNull(game.getTopCard());
@@ -33,6 +39,9 @@ class UnoGameTest {
         }
     }
 
+    /**
+     * Test the hasGameEnded method to check if the game ends correctly.
+     */
     @Test
     void testHasGameEnded() {
         assertFalse(game.hasGameEnded());
@@ -43,6 +52,9 @@ class UnoGameTest {
         assertTrue(game.hasGameEnded());
     }
 
+    /**
+     * Test the playCard method to ensure that cards can be played correctly.
+     */
     @Test
     void testPlayCard() {
         Player currentPlayer = game.getCurrentPlayer();
@@ -51,6 +63,9 @@ class UnoGameTest {
         assertEquals(card, game.getTopCard());
     }
 
+    /**
+     * Test the dealInitialCards method to check if players receive the correct number of initial cards.
+     */
     @Test
     void testDealInitialCards() {
         for (Player player : players) {
@@ -58,6 +73,9 @@ class UnoGameTest {
         }
     }
 
+    /**
+     * Test the drawCard method to verify that drawing a card modifies the hand size correctly.
+     */
     @Test
     void testDrawCard() {
         Player currentPlayer = game.getCurrentPlayer();
@@ -66,6 +84,9 @@ class UnoGameTest {
         assertEquals(initialHandSize + 1, currentPlayer.getCards().size());
     }
 
+    /**
+     * Test the isValidPlay method to check if card plays are validated properly.
+     */
     @Test
     void testIsValidPlay() {
         Player currentPlayer = game.getCurrentPlayer();
@@ -76,6 +97,9 @@ class UnoGameTest {
         assertFalse(game.isValidPlay(currentPlayer, invalidCard));
     }
 
+    /**
+     * Test the reverseDirection method to ensure that the game direction is reversed correctly.
+     */
     @Test
     void testReverseDirection() {
         boolean initialDirection = game.isReverseDirection();
@@ -83,6 +107,9 @@ class UnoGameTest {
         assertNotEquals(initialDirection, game.isReverseDirection());
     }
 
+    /**
+     * Test the nextPlayer method to verify that the next player is set correctly.
+     */
     @Test
     void testNextPlayer() {
         Player currentPlayer = game.getCurrentPlayer();
@@ -90,11 +117,17 @@ class UnoGameTest {
         assertNotEquals(currentPlayer, game.getCurrentPlayer());
     }
 
+    /**
+     * Test the setInitialCard method to ensure the initial card is set correctly.
+     */
     @Test
     void testSetInitialCard() {
         assertNotNull(game.getTopCard());
     }
 
+    /**
+     * Test the getWinner method to check if the winner is correctly identified.
+     */
     @Test
     void testGetWinner() {
         int initialSize = players.get(0).getCards().size();
@@ -104,6 +137,9 @@ class UnoGameTest {
         assertEquals(players.get(0), game.getWinner());
     }
 
+    /**
+     * Test the endGame method to ensure that the game ends and players' scores are adjusted correctly.
+     */
     @Test
     void testEndGame() {
         int initialSize = players.get(0).getCards().size();
