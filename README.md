@@ -51,13 +51,13 @@ SRC.Main.java: The entry point of the Uno game. It initializes the game and star
 BREAK DOWN OF TASKS FOR MILESTONE 1
 ---------------------------------------
 
-Khalid Merai - SRC.UnoGame.java, added a few methods in card.java and SRC.ConsoleUI.java and helped with the junit testing
+Khalid Merai - SRC.UnoGame.java, added a few methods in card.java and SRC.ConsoleUI.java and helped with the junit testing and did the data structure document
 
 Scharara Islam - SRC.Player.java, SRC.Deck.java
 
 Marina Latif - SRC.Card.java, UML diagram, Sequence diagram, ReadMe file 
 
-Abdulrahman Aldayel - SRC.Main.java, SRC.ConsoleUI.java
+Abdulrahman Aldayel - SRC.Main.java, SRC.ConsoleUI.java, did the junits for milestone1 and did the data structure document
 
 
 
