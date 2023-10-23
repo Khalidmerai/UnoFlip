@@ -55,7 +55,7 @@ Khalid Merai - SRC.UnoGame.java, added a few methods in card.java and SRC.Consol
 
 Scharara Islam - SRC.Player.java, SRC.Deck.java
 
-Marina Latif - SRC.Card.java 
+Marina Latif - SRC.Card.java, UML diagram, Sequence diagram, ReadMe file 
 
 Abdulrahman Aldayel - SRC.Main.java, SRC.ConsoleUI.java
 
