@@ -79,7 +79,10 @@ public class UnoGame {
             System.out.println("Invalid move. Please try again.");
         }
     }
-
+    // Method to set the current color for the game
+    public void setCurrentColor(Card.Color color) {
+        this.currentColor = color;
+    }
     /**
      * Deals the initial set of cards to all players at the start of the game.
      */
@@ -92,7 +95,18 @@ public class UnoGame {
         }
         discardPile.add(deck.drawCard());
     }
-
+    /**
+     * Checks if a card can be played by the given player based on the top card on the discard pile.
+     *
+     * @param player The player attempting to play a card.
+     * @param card The card to be played.
+     * @return True if the card can be played, otherwise false.
+     */
+    public boolean canPlayCard(Player player, Card card) {
+        Card topCard = getTopCard();
+        return card.getColor() == topCard.getColor() || card.getValue() == topCard.getValue() ||
+                card.getColor() == Card.Color.WILD || topCard.getColor() == Card.Color.WILD;
+    }
 
     /**
      * Draws a card for the given player and takes appropriate actions based on the drawn card.
@@ -104,10 +118,10 @@ public class UnoGame {
         player.pickCard(drawnCard);
         System.out.println(player.toString() + " drew a card: " + drawnCard.toString());
 
-        if (canPlayCard(player)) {
-            System.out.println("You have a playable card now.");
-        } else {
-            nextPlayer();
+        if (!canPlayCard(player, drawnCard)) {
+            // The drawn card is not playable, the player's turn ends
+            System.out.println("The drawn card is not playable. Your turn ends.");
+            nextPlayer(); // Move to the next player's turn
         }
     }
 
