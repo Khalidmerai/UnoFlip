@@ -92,7 +92,7 @@ public class UnoView extends JFrame {
         ArrayList<String> cardId = new ArrayList<>(Arrays.asList(cardNames));
         //card for the players hand
         for(int i = 0; i<cardId.size(); i++){
-            cardButtons.get(i).setIcon(//we need to add the pictures of the card);
+           // cardButtons.get(i).setIcon(//we need to add the pictures of the card);
         }
         //if they dont have the card
         for(int i = cardId.size(); i<cardButtons.size();i++){
