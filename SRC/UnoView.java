@@ -86,14 +86,13 @@ public class UnoView extends JFrame {
             JOptionPane.showMessageDialog(this, "Invalid input. Please enter an integer (2-4).");
         }
     }
-
     public void setButtonIcon(){
         String listString = unoGame.getPlayers(unoGame.getCurrentPlayer()).stream().map(Objects::toString).collect(Collectors.joining(","));
         String[] cardNames = listString.split(",");
         ArrayList<String> cardId = new ArrayList<>(Arrays.asList(cardNames));
         //card for the players hand
         for(int i = 0; i<cardId.size(); i++){
-            //cardButtons.get(i).setIcon(//we need to add the pictures of the card);
+            cardButtons.get(i).setIcon(//we need to add the pictures of the card);
         }
         //if they dont have the card
         for(int i = cardId.size(); i<cardButtons.size();i++){
