@@ -5,12 +5,20 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class UnoView extends JFrame {
     private JLabel players;
     private JTextField numOfPlayers;
     private JButton startButton;
     private ArrayList<String> playerNames;
+
+    private ArrayList<JButton> cardButtons = new ArrayList<JButton>();
+    private UnoGame unoGame;
+
+
 
     public UnoView() {
         // Create a JFrame
@@ -76,6 +84,20 @@ public class UnoView extends JFrame {
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Invalid input. Please enter an integer (2-4).");
+        }
+    }
+
+    public void setButtonIcon(){
+        String listString = unoGame.getPlayers(unoGame.getCurrentPlayer()).stream().map(Objects::toString).collect(Collectors.joining(","));
+        String[] cardNames = listString.split(",");
+        ArrayList<String> cardId = new ArrayList<>(Arrays.asList(cardNames));
+        //card for the players hand
+        for(int i = 0; i<cardId.size(); i++){
+            //cardButtons.get(i).setIcon(//we need to add the pictures of the card);
+        }
+        //if they dont have the card
+        for(int i = cardId.size(); i<cardButtons.size();i++){
+            cardButtons.get(i).setIcon(null);
         }
     }
 
