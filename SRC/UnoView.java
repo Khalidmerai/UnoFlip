@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static java.awt.BorderLayout.*;
+
 public class UnoView extends JFrame {
     private JLabel players;
     private JTextField numOfPlayers;
@@ -37,7 +39,7 @@ public class UnoView extends JFrame {
         playerInfoPanel.add(startButton);
 
 
-        add(playerInfoPanel, BorderLayout.CENTER);
+        add(playerInfoPanel, CENTER);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Add action listeners
@@ -46,6 +48,23 @@ public class UnoView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Handle the start game action
                 startGame();
+
+                //creating a JFrame background
+                JFrame frame = new JFrame("Uno Game");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setLayout(new BorderLayout());
+                frame.setSize(600,400);
+                frame.setVisible(true);
+
+                //Writing the player name
+                // Create a JLabel with text
+                JLabel playerName = new JLabel("Player1");
+
+
+                frame.add(playerName, BorderLayout.NORTH);
+
+
+
             }
         });
 
@@ -86,6 +105,7 @@ public class UnoView extends JFrame {
             JOptionPane.showMessageDialog(this, "Invalid input. Please enter an integer (2-4).");
         }
     }
+    /**
     public void setButtonIcon(){
         String listString = unoGame.getPlayers(unoGame.getCurrentPlayer()).stream().map(Objects::toString).collect(Collectors.joining(","));
         String[] cardNames = listString.split(",");
@@ -99,6 +119,7 @@ public class UnoView extends JFrame {
             cardButtons.get(i).setIcon(null);
         }
     }
+     */
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
