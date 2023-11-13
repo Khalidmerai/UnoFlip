@@ -2,7 +2,10 @@ package SRC;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class UnoGUI extends JFrame {
@@ -12,6 +15,7 @@ public class UnoGUI extends JFrame {
     private JPanel cardPanel;
     private Deck deck;
     private JSpinner numOfPlayersSpinner;
+    private Card card;
 
     public UnoGUI() {
         super("Uno");
@@ -167,8 +171,24 @@ public class UnoGUI extends JFrame {
         // Implement this method to convert a Card object to its corresponding ImageIcon
         // Use the cardsImages list or load images from files
         // ...
+        // Create a map of ranks and corresponding image file names
+        Map<String, String> cardImageMap = new HashMap<>();
 
-        return new ImageIcon(); // Placeholder, replace with actual implementation
+        //we need to find the a way to get all the card images in one folder and just call that
+        cardImageMap.put("2", "blue_2.png" ); //we need to find the folder that allows to get the card naming and stuff
+
+        //Retrieve the corresponding image file name based on the card's rank
+        String imageFileName = cardImageMap.get(card.getValue());
+
+        // Use the getResource() method to load the image from the classpath
+        URL imageUrl = getClass().getResource(imageFileName);
+
+        // Check if the image URL is valid, otherwise return null
+        if(imageUrl == null){
+            return null;
+        }
+        // Create and return a new ImageIcon from the image URL
+        return new ImageIcon(imageUrl); // Placeholder, replace with actual implementation
     }
 
 
