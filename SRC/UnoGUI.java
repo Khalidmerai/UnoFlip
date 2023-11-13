@@ -200,7 +200,7 @@ public class UnoGUI extends JFrame {
     }
 
     private void endTurn() {
-
+        System.exit(0);
     }
 
     public static void main(String[] args) {
