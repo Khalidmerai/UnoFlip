@@ -240,7 +240,7 @@ public class UnoGUI extends JFrame {
         cardPanel.add(topCardLabel);
 
         // Display the player cards
-        ArrayList<Card> playerCards = unoGame.getCurrentPlayerCard();
+        ArrayList<Card> playerCards = unoGame.getCurrentPlayerCards();
 
         for (Card card : playerCards) {
             JLabel cardLabel = new JLabel(getImageIconForCard(card));
@@ -264,13 +264,55 @@ public class UnoGUI extends JFrame {
         Map<String, String> cardImageMap = new HashMap<>();
 
         //we need to find the a way to get all the card images in one folder and just call that
-        cardImageMap.put("2", "blue_2.png" ); //we need to find the folder that allows to get the card naming and stuff
+        cardImageMap.put("1", "blue1.png"); //we need to find the folder that allows to get the card naming and stuff
+        cardImageMap.put("2", "blue2.png");
+        cardImageMap.put("3", "blue3.png");
+        cardImageMap.put("4", "blue4.png");
+        cardImageMap.put("5", "blue5.png");
+        cardImageMap.put("6", "blue6.png");
+        cardImageMap.put("7", "blue7.png");
+        cardImageMap.put("8", "blue8.png");
+        cardImageMap.put("9", "blue9.png");
+        cardImageMap.put("0", "blue10.png");
+
+        cardImageMap.put("1", "green1.png");
+        cardImageMap.put("2", "green2.png");
+        cardImageMap.put("3", "green3.png");
+        cardImageMap.put("4", "green4.png");
+        cardImageMap.put("5", "green5.png");
+        cardImageMap.put("6", "green6.png");
+        cardImageMap.put("7", "green7.png");
+        cardImageMap.put("8", "green8.png");
+        cardImageMap.put("9", "green9.png");
+        cardImageMap.put("0", "green10.png");
+
+        cardImageMap.put("1", "red1.png");
+        cardImageMap.put("2", "red2.png");
+        cardImageMap.put("3", "red3.png");
+        cardImageMap.put("4", "red4.png");
+        cardImageMap.put("5", "red5.png");
+        cardImageMap.put("6", "red6.png");
+        cardImageMap.put("7", "red7.png");
+        cardImageMap.put("8", "red8.png");
+        cardImageMap.put("9", "red9.png");
+        cardImageMap.put("0", "red10.png");
+
+        cardImageMap.put("1", "yellow1.png");
+        cardImageMap.put("2", "yellow2.png");
+        cardImageMap.put("3", "yellow3.png");
+        cardImageMap.put("4", "yellow4.png");
+        cardImageMap.put("5", "yellow5.png");
+        cardImageMap.put("6", "yellow6.png");
+        cardImageMap.put("7", "yellow7.png");
+        cardImageMap.put("8", "yellow8.png");
+        cardImageMap.put("9", "yellow9.png");
+        cardImageMap.put("0", "yellow10.png");
 
         //Retrieve the corresponding image file name based on the card's rank
         String imageFileName = cardImageMap.get(card.getValue());
 
         // Use the getResource() method to load the image from the classpath
-        URL imageUrl = getClass().getResource(imageFileName);
+        URL imageUrl = getClass().getResource("/images/" + imageFileName);
 
         // Check if the image URL is valid, otherwise return null
         if(imageUrl == null){
