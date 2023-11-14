@@ -9,43 +9,25 @@ import java.util.Map;
 
 
 public class UnoGUI extends JFrame {
-    private JButton start, mainMenu, draw, addPlayer, undo, endTurn, discardPile;
+    private JButton start, draw, endTurn,nextPlayer;
     private ArrayList<ImageIcon> cardsImages;
     private UnoGame unoGame;
     private JPanel cardPanel;
     private Deck deck;
     private JSpinner numOfPlayersSpinner;
     private Card card;
+    private JLabel currentPlayerLabel;
+    private JLabel topCardLabel;
+    private JPanel playerHandPanel;
+    private JTextPane messagesTextPane;
+    private Player currentPlayer;
+    private Card topCard;
+    private JPanel topCardPanel;
 
     public UnoGUI() {
-        super("Uno");
 
         // Initialize deck
         deck = new Deck();
-
-
-        // Initialize components
-        cardsImages = new ArrayList<>();
-        start = new JButton("Press to Start a new Game");
-        draw = new JButton("Draw Card");
-        endTurn = new JButton("End Turn");
-        cardPanel = new JPanel(new GridLayout(1, 0));
-
-        // Set up layout
-        this.setLayout(new BorderLayout());
-        this.add(cardPanel, BorderLayout.CENTER);
-        this.add(draw, BorderLayout.SOUTH);
-        this.add(endTurn, BorderLayout.EAST);
-
-        // Add action listeners
-        start.addActionListener((e) -> startFrame());
-        draw.addActionListener((e) -> drawCard());
-        endTurn.addActionListener((e) -> endTurn());
-
-        this.setSize(800, 600);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
-
 
         startFrame();
         UnoGameScreen();
@@ -105,21 +87,124 @@ public class UnoGUI extends JFrame {
 
             unoGame = createUnoGame(playerNames);
 
-            
+
             JFrame gameFrame = new JFrame("UNO Game");
-            UnoView gameView = new UnoView(unoGame);
-            gameFrame.add(gameView);
-            gameFrame.setSize(800, 600);
+            start = new JButton("Press to Start a new Game");
+            draw = new JButton("Draw Card");
+            endTurn = new JButton("End Turn");
+            cardPanel = new JPanel(new GridLayout(1, 0));
+
+            // Set up layout
+            gameFrame.setLayout(new BorderLayout());
+            gameFrame.add(cardPanel, BorderLayout.CENTER);
+            gameFrame.add(draw, BorderLayout.SOUTH);
+            gameFrame.add(endTurn, BorderLayout.EAST);
+
+
+            // Add action listeners
+
+            draw.addActionListener((e) -> drawCard());
+            endTurn.addActionListener((e) -> endTurn());
+
+
+
+            if(numPlayers == 2){
+            // Create panels for top and bottom player hands
+            JPanel topPlayerPanel = new JPanel(new GridLayout(1, 7)); // 7 for the number of cards
+            JPanel bottomPlayerPanel = new JPanel(new GridLayout(1, 7));
+
+            // Add placeholder buttons for each player's cards
+            for (int i = 0; i < 7; i++) {
+                topPlayerPanel.add(new JButton("Card " + (i + 1)));
+                bottomPlayerPanel.add(new JButton("Card " + (i + 1)));
+            }
+
+            // Add the panels to the game frame
+            gameFrame.add(topPlayerPanel, BorderLayout.NORTH);
+            gameFrame.add(bottomPlayerPanel, BorderLayout.SOUTH);}
+
+            else if(numPlayers == 3){
+            // Create panels for top and bottom player hands
+            JPanel topPlayerPanel = new JPanel(new GridLayout(1, 7)); // 7 for the number of cards
+            JPanel bottomPlayerPanel = new JPanel(new GridLayout(1, 7));
+            JPanel eastPlayerPanel = new JPanel(new GridLayout(1, 7));
+
+
+            // Add placeholder buttons for each player's cards
+            for (int i = 0; i < 7; i++) {
+                topPlayerPanel.add(new JButton("Card " + (i + 1)));
+                bottomPlayerPanel.add(new JButton("Card " + (i + 1)));
+                eastPlayerPanel.add(new JButton("Card " + (i + 1)));
+            }
+                // Add the panels to the game frame
+                gameFrame.add(topPlayerPanel, BorderLayout.NORTH);
+                gameFrame.add(bottomPlayerPanel, BorderLayout.SOUTH);
+                gameFrame.add(eastPlayerPanel, BorderLayout.EAST);}
+
+            else if(numPlayers == 4){
+            // Create panels for top and bottom player hands
+            JPanel topPlayerPanel = new JPanel(new GridLayout(1, 7)); // 7 for the number of cards
+            JPanel bottomPlayerPanel = new JPanel(new GridLayout(1, 7));
+            JPanel eastPlayerPanel = new JPanel(new GridLayout(1, 7));
+            JPanel westPlayerPanel = new JPanel(new GridLayout(1, 7));
+
+
+            // Add placeholder buttons for each player's cards
+            for (int i = 0; i < 7; i++) {
+                topPlayerPanel.add(new JButton("Card " + (i + 1)));
+                bottomPlayerPanel.add(new JButton("Card " + (i + 1)));
+                eastPlayerPanel.add(new JButton("Card " + (i + 1)));
+                westPlayerPanel.add(new JButton("Card " + (i + 1)));
+            }
+                // Add the panels to the game frame
+                gameFrame.add(topPlayerPanel, BorderLayout.NORTH);
+                gameFrame.add(bottomPlayerPanel, BorderLayout.SOUTH);
+                gameFrame.add(eastPlayerPanel, BorderLayout.EAST);
+                gameFrame.add(westPlayerPanel, BorderLayout.WEST);}
+
+
+
+
+
+            gameFrame.setSize(1000, 1000);
             gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             gameFrame.setVisible(true);
+
+
+
 
             // Close the current setup GUI
             dispose();
         }
     }
 
+    private void nextPlayer() {
+    }
+    private void displayPlayerHand(Player currentPlayer) {
+        cardPanel.removeAll(); // Clear the panel
+
+        for (Card card : currentPlayer.getCards()) {
+            ImageIcon cardIcon = new ImageIcon(card.getImagePath());
+            JButton cardButton = new JButton(cardIcon);
+            cardButton.addActionListener((e) -> playCard(card));
+            cardPanel.add(cardButton);
+        }
+
+        cardPanel.revalidate();
+        cardPanel.repaint();
+    }
 
 
+    private void displayTopCard(Card topCard) {
+        topCardPanel.removeAll();
+
+        ImageIcon topCardIcon = new ImageIcon(topCard.getImagePath());
+        JLabel topCardLabel = new JLabel(topCardIcon);
+        topCardPanel.add(topCardLabel);
+
+        topCardPanel.revalidate();
+        topCardPanel.repaint();
+    }
 
 
     private ArrayList<Player> createPlayers(ArrayList<String> playerNames) {
@@ -140,6 +225,10 @@ public class UnoGUI extends JFrame {
         // Create an UnoGame instance with players and the deck
         return new UnoGame(createPlayers(playerNames), deck);
     }
+    private void playCard(Card card) {
+        // Implement logic to play the card
+        // Refresh GUI after playing a card
+    }
 
     private void UnoGameScreen() {
         // Clear the existing card images from the card panel
@@ -151,7 +240,7 @@ public class UnoGUI extends JFrame {
         cardPanel.add(topCardLabel);
 
         // Display the player cards
-        ArrayList<Card> playerCards = unoGame.getCurrentPlayerCards();
+        ArrayList<Card> playerCards = unoGame.getCurrentPlayerCard();
 
         for (Card card : playerCards) {
             JLabel cardLabel = new JLabel(getImageIconForCard(card));
