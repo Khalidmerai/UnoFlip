@@ -5,6 +5,8 @@ import SRC.ConsoleUI;
 import SRC.Deck;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * The SRC.UnoGame class represents a game of Uno, with players, a deck of Uno cards,
  * and game logic for playing and managing the game.
@@ -183,17 +185,29 @@ public class UnoGame {
 
     // Add the following method to skip the next player's turn
     public void skipNextPlayer() {
-        nextPlayer();
+        //still need to edit this
+        int turn = 0;
+        if(turn+1 > players.size()){
+            turn = 0;
+        }
+        else{
+            turn+=1;
+        }
+        //nextPlayer();
     }
 
 
     /**
      * Reverses the direction of play in the game.
-     */
+    */
     public void reverseDirection() {
-        reverseDirection = !reverseDirection;
+       // reverseDirection = !reverseDirection;
+        Collections.reverse(players);
+        System.out.println("Reverse have been implemented");
     }
     public boolean isReverseDirection() {return reverseDirection;}
+
+
 
     /**
      * Sets the color for a played Wild card.
