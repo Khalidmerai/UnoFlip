@@ -264,6 +264,7 @@ public class UnoGUI extends JFrame {
         Map<String, String> cardImageMap = new HashMap<>();
 
         //we need to find the a way to get all the card images in one folder and just call that
+        //still need to figure out a way to implement the special card
         cardImageMap.put("1", "blue1.png"); //we need to find the folder that allows to get the card naming and stuff
         cardImageMap.put("2", "blue2.png");
         cardImageMap.put("3", "blue3.png");
