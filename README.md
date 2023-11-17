@@ -65,7 +65,7 @@ Abdulrahman Aldayel - SRC.Main.java, SRC.ConsoleUI.java, did the junits for mile
 BREAK DOWN OF TASKS FOR MILESTONE 2
 ---------------------------------------
 
-Khalid Merai - SRC.UnoGame.java, SRC.Card.java, SRC.UnoGUI.java, updated JUnit testing
+Khalid Merai - SRC.UnoGame.java, SRC.Card.java, SRC.UnoGUI.java, updated JUnit testing and helped in unocontroller
 
 Scharara Islam - SRC.UnoGUI.java, edited SRC.UnoGame.java, updated ReadMe file and diagrams
 
