@@ -6,54 +6,68 @@ import java.awt.event.ActionListener;
 public class UnoController {
     private UnoGame model;
     private UnoGUI view;
+    private  ConsoleUI ui;
+
 
     public UnoController(UnoGame model, UnoGUI view) {
         this.model = model;
         this.view = view;
 
-        //we need to initialize event listeners here
     }
 
-    //start the Uno game
-    public void startGame() {
-        model.startGame();
-        //we need to have the game loop here
-    }
-
-    //player chooses to draw a card
+    // Player chooses to draw a card
     public void drawCard() {
         Player currentPlayer = model.getCurrentPlayer();
         model.drawCard(currentPlayer);
-        updateView(); //updating the gui with new model changes
+        updateView(); // Updating the GUI with new model changes
     }
 
-    //player plays a card from their hand
+    // Player plays a card from their hand
     public void playCard(Card card) {
         Player currentPlayer = model.getCurrentPlayer();
-        //model.playCard(currentPlayer, card);
+        model.playCard(currentPlayer, card, ui);
         updateView();
     }
 
-    //update the view with current game state
+    // Update the view with the current game state
     private void updateView() {
-        //this method should update the gui displayed
+        // This method should update the displayed GUI
     }
 
-    //end current player turn and switch to next player
+    // End current player turn and switch to the next player
     public void endTurn() {
         model.nextPlayer();
         updateView();
     }
 
-    //handle special cards like wild cards
+    // Handle special cards like wild cards
     public void handleSpecialCard(Card card) {
-        //here we should have special card handling logic
+        // Here we should have special card handling logic
     }
 
-    //we probably need other methods, and we need to add listeners
+    // Listener for drawing a card
+    private class DrawCardListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            drawCard();
+        }
+    }
 
-    //end of the game
-    private void endGame() {
-        //end game logic
+    // Listener for playing a card
+    private class PlayCardListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // You need to obtain the selected card from your GUI and pass it to playCard method
+            //Card selectedCard = view.getSelectedCard();
+            //playCard(selectedCard);
+        }
+    }
+
+    // Listener for ending the turn
+    private class EndTurnListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            endTurn();
+        }
     }
 }
