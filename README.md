@@ -4,7 +4,7 @@
 This program reproduces a simplified version of the card game UNO Flip. This program was made for the SYSC 3110 team project, by group 15, which consists of Khalid Merai, Scharara Islam, Marina Latif and Abdulrahman Aldayel.
 
 #How to Play UNO using the console interface:
-1. Run the Class SRC.Main
+1. Run the Class SRC.UnoGUI.java
 2. Enter the number of Players : (2-4)
 3. Enter the name of Players
 4. The game will display the top card on the discard pile, and each player's initial hand.
@@ -48,6 +48,10 @@ CardTest.java: Contains unit tests for the SRC.Card class to ensure card-related
 
 SRC.Main.java: The entry point of the Uno game. It initializes the game and starts the gameplay.
 
+SRC.UnoGUI.java: GUI-based implementation of the Uno card game
+
+SRC.Controller.java: Controller object that manages the interaction between the game logic (UnoGame.java) and the GUI-Based (UnoGUI.java)
+
 BREAK DOWN OF TASKS FOR MILESTONE 1
 ---------------------------------------
 
@@ -58,6 +62,17 @@ Scharara Islam - SRC.Player.java, SRC.Deck.java
 Marina Latif - SRC.Card.java, UML diagram, Sequence diagram, ReadMe file 
 
 Abdulrahman Aldayel - SRC.Main.java, SRC.ConsoleUI.java, did the junits for milestone1 and did the data structure document
+
+BREAK DOWN OF TASKS FOR MILESTONE 2
+---------------------------------------
+
+Khalid Merai - SRC.UnoGame.java, SRC.Card.java
+
+Scharara Islam - SRC.UnoGUI.java, edited SRC.UnoGame.java, updated ReadMe file and diagrams
+
+Marina Latif - SRC.UnoGUI.java SRC.Card.java, UML diagram, Sequence diagram, ReadMe file 
+
+Abdulrahman Aldayel - SRC.Controller.java
 
 
 
