@@ -1,19 +1,18 @@
 # UnoFlip
-#AUTHORS AND ACKNOWLEDGEMENT
+# AUTHORS AND ACKNOWLEDGEMENT
 
 This program reproduces a simplified version of the card game UNO Flip. This program was made for the SYSC 3110 team project, by group 15, which consists of Khalid Merai, Scharara Islam, Marina Latif and Abdulrahman Aldayel.
 
-#How to Play UNO using the console interface:
+# How to Play UNO:
 1. Run the Class SRC.UnoGUI.java
 2. Enter the number of Players : (2-4)
 3. Enter the name of Players
 4. The game will display the top card on the discard pile, and each player's initial hand.
-5. You can choose to draw a card (enter 0) or play a card (enter index of card) when prompted
-   -> if you choose to draw a card (enter 0), the game will simulate drawing a card from the deck and add it to your hand.
-   -> If you choose to play a card (enter index of card), the selected card from your hand will be played. After playing the card, the game will update the top 
+5. Players use their mouse to interact with the game and choosing either to draw the cards or play the cards,
+   -> if you choose to draw a card, the game will simulate drawing a card from the deck and add it to your hand.
+   -> If you choose to play a card, the selected card from your hand will be played. After playing the card, the game will update the top 
       card on the discard pile, and it will be the next player's turn.
 6. Repeat step 5 for each player's turn. The game will continue until a player wins by emptying their hand.
-
 
 
 Game Rules
