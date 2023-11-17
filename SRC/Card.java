@@ -11,6 +11,11 @@ public class Card {
     private int value;
     private Color wildColor;
 
+    public String getImagePath() {
+
+        return "images/" + color.toString().toLowerCase(Locale.ROOT) + "_" + value + ".png";
+    }
+
     /**
      * Enumeration for card colors.
      */

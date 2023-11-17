@@ -359,4 +359,8 @@ public class UnoGame {
     public ArrayList<Player> getPlayers() {
         return players;
     }
+    public ArrayList<Card> getCurrentPlayerCards() {
+        Player currentPlayer = getCurrentPlayer();
+        return currentPlayer.getCards();
+    }
 }
