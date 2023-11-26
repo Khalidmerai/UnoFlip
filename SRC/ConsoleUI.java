@@ -1,7 +1,5 @@
 package SRC;
 
-import SRC.Card;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 

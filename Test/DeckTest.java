@@ -2,8 +2,6 @@ package Test;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.AfterEach;
-import SRC.Card;
 import SRC.Deck;
 
 import java.util.ArrayList;

@@ -1,10 +1,12 @@
 package SRC.GUI.views;
 
-import SRC.Cards.Card;
-import SRC.Cards.DoubleSidedCard;
-import SRC.GUI.Controllers.NewGameController;
-import SRC.GUI.Models.Game;
-import SRC.GUI.Models.Player;
+import SRC.GUI.GameViewFrame;
+import SRC.GUI.controllers.NewGameController;
+import SRC.GUI.models.Game;
+import SRC.GUI.models.Player;
+import SRC.cards.Card;
+import SRC.cards.DoubleSidedCard;
+
 
 import javax.swing.*;
 import java.util.ArrayList;

@@ -1,5 +1,6 @@
 package SRC.GUI;
 import SRC.GUI.models.Game;
+import SRC.GUI.models.GameRunner;
 import SRC.GUI.views.*;
 import SRC.cards.DoubleSidedCard;
 

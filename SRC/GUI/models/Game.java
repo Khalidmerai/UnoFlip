@@ -1,6 +1,7 @@
 package SRC.GUI.models;
 
 import SRC.GUI.controllers.HandController;
+import SRC.GUI.views.GameView;
 import SRC.cards.Card;
 import SRC.cards.DoubleSidedCard;
 
