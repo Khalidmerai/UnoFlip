@@ -5,6 +5,7 @@ import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -23,6 +24,8 @@ public class UnoGUI extends JFrame {
     private Player currentPlayer;
     private Card topCard;
     private JPanel topCardPanel;
+
+
 
     public UnoGUI() {
 
@@ -109,53 +112,53 @@ public class UnoGUI extends JFrame {
 
 
             if(numPlayers == 2){
-            // Create panels for top and bottom player hands
-            JPanel topPlayerPanel = new JPanel(new GridLayout(1, 7)); // 7 for the number of cards
-            JPanel bottomPlayerPanel = new JPanel(new GridLayout(1, 7));
+                // Create panels for top and bottom player hands
+                JPanel topPlayerPanel = new JPanel(new GridLayout(1, 7)); // 7 for the number of cards
+                JPanel bottomPlayerPanel = new JPanel(new GridLayout(1, 7));
 
-            // Add placeholder buttons for each player's cards
-            for (int i = 0; i < 7; i++) {
-                topPlayerPanel.add(new JButton("Card " + (i + 1)));
-                bottomPlayerPanel.add(new JButton("Card " + (i + 1)));
-            }
+                // Add placeholder buttons for each player's cards
+                for (int i = 0; i < 7; i++) {
+                    topPlayerPanel.add(new JButton("Card " + (i + 1)));
+                    bottomPlayerPanel.add(new JButton("Card " + (i + 1)));
+                }
 
-            // Add the panels to the game frame
-            gameFrame.add(topPlayerPanel, BorderLayout.NORTH);
-            gameFrame.add(bottomPlayerPanel, BorderLayout.SOUTH);}
+                // Add the panels to the game frame
+                gameFrame.add(topPlayerPanel, BorderLayout.NORTH);
+                gameFrame.add(bottomPlayerPanel, BorderLayout.SOUTH);}
 
             else if(numPlayers == 3){
-            // Create panels for top and bottom player hands
-            JPanel topPlayerPanel = new JPanel(new GridLayout(1, 7)); // 7 for the number of cards
-            JPanel bottomPlayerPanel = new JPanel(new GridLayout(1, 7));
-            JPanel eastPlayerPanel = new JPanel(new GridLayout(1, 7));
+                // Create panels for top and bottom player hands
+                JPanel topPlayerPanel = new JPanel(new GridLayout(1, 7)); // 7 for the number of cards
+                JPanel bottomPlayerPanel = new JPanel(new GridLayout(1, 7));
+                JPanel eastPlayerPanel = new JPanel(new GridLayout(1, 7));
 
 
-            // Add placeholder buttons for each player's cards
-            for (int i = 0; i < 7; i++) {
-                topPlayerPanel.add(new JButton("Card " + (i + 1)));
-                bottomPlayerPanel.add(new JButton("Card " + (i + 1)));
-                eastPlayerPanel.add(new JButton("Card " + (i + 1)));
-            }
+                // Add placeholder buttons for each player's cards
+                for (int i = 0; i < 7; i++) {
+                    topPlayerPanel.add(new JButton("Card " + (i + 1)));
+                    bottomPlayerPanel.add(new JButton("Card " + (i + 1)));
+                    eastPlayerPanel.add(new JButton("Card " + (i + 1)));
+                }
                 // Add the panels to the game frame
                 gameFrame.add(topPlayerPanel, BorderLayout.NORTH);
                 gameFrame.add(bottomPlayerPanel, BorderLayout.SOUTH);
                 gameFrame.add(eastPlayerPanel, BorderLayout.EAST);}
 
             else if(numPlayers == 4){
-            // Create panels for top and bottom player hands
-            JPanel topPlayerPanel = new JPanel(new GridLayout(1, 7)); // 7 for the number of cards
-            JPanel bottomPlayerPanel = new JPanel(new GridLayout(1, 7));
-            JPanel eastPlayerPanel = new JPanel(new GridLayout(1, 7));
-            JPanel westPlayerPanel = new JPanel(new GridLayout(1, 7));
+                // Create panels for top and bottom player hands
+                JPanel topPlayerPanel = new JPanel(new GridLayout(1, 7)); // 7 for the number of cards
+                JPanel bottomPlayerPanel = new JPanel(new GridLayout(1, 7));
+                JPanel eastPlayerPanel = new JPanel(new GridLayout(1, 7));
+                JPanel westPlayerPanel = new JPanel(new GridLayout(1, 7));
 
 
-            // Add placeholder buttons for each player's cards
-            for (int i = 0; i < 7; i++) {
-                topPlayerPanel.add(new JButton("Card " + (i + 1)));
-                bottomPlayerPanel.add(new JButton("Card " + (i + 1)));
-                eastPlayerPanel.add(new JButton("Card " + (i + 1)));
-                westPlayerPanel.add(new JButton("Card " + (i + 1)));
-            }
+                // Add placeholder buttons for each player's cards
+                for (int i = 0; i < 7; i++) {
+                    topPlayerPanel.add(new JButton("Card " + (i + 1)));
+                    bottomPlayerPanel.add(new JButton("Card " + (i + 1)));
+                    eastPlayerPanel.add(new JButton("Card " + (i + 1)));
+                    westPlayerPanel.add(new JButton("Card " + (i + 1)));
+                }
                 // Add the panels to the game frame
                 gameFrame.add(topPlayerPanel, BorderLayout.NORTH);
                 gameFrame.add(bottomPlayerPanel, BorderLayout.SOUTH);
@@ -179,7 +182,28 @@ public class UnoGUI extends JFrame {
     }
 
     private void nextPlayer() {
+        // Ensure that there is a valid UnoGame instance
+        if (unoGame == null) {
+            return;
+        }
+
+        // Get the next player
+        Player nextPlayer = unoGame.getNextPlayer();
+
+        // Check if the next player is null (game over or other conditions)
+        if (nextPlayer == null) {
+            // Handle the case where there is no next player (e.g., display a message)
+            System.out.println("No next player. The game might be over.");
+            return;
+        }
+
+        // Set the current player to the next player
+        currentPlayer = nextPlayer;
+
+        // Display the hand of the new current player
+        displayPlayerHand(currentPlayer);
     }
+
     private void displayPlayerHand(Player currentPlayer) {
         cardPanel.removeAll(); // Clear the panel
 
@@ -188,6 +212,7 @@ public class UnoGUI extends JFrame {
             JButton cardButton = new JButton(cardIcon);
             cardButton.addActionListener((e) -> playCard(card));
             cardPanel.add(cardButton);
+
         }
 
         cardPanel.revalidate();
@@ -226,9 +251,28 @@ public class UnoGUI extends JFrame {
         return new UnoGame(createPlayers(playerNames), deck);
     }
     private void playCard(Card card) {
-        // Implement logic to play the card
-        // Refresh GUI after playing a card
+        // Ensure that there is a valid UnoGame instance
+        if (unoGame == null) {
+            return;
+        }
+
+        //is this correct?
+        ConsoleUI consoleUI = new ConsoleUI();
+        // Attempt to play the chosen card
+        unoGame.playCard(currentPlayer, card, consoleUI);
+
+        // Update the GUI to reflect the changes
+        displayPlayerHand(currentPlayer);
+        displayTopCard(unoGame.getTopCard());
+
+        // Check if the played card has special effects (e.g., skip, reverse, etc.)
+        // Implement logic to handle special card effects here
+
+        // Move to the next player
+        nextPlayer();
     }
+
+
 
     private void UnoGameScreen() {
         // Clear the existing card images from the card panel
@@ -257,79 +301,57 @@ public class UnoGUI extends JFrame {
 
 
     private ImageIcon getImageIconForCard(Card card) {
-        // Implement this method to convert a Card object to its corresponding ImageIcon
-        // Use the cardsImages list or load images from files
-        // ...
-        // Create a map of ranks and corresponding image file names
-        Map<String, String> cardImageMap = new HashMap<>();
+        // Assuming card.getValue() returns a string representation of the card's value
+        // and card.getColor() returns the color of the card
+        String color = card.getColor().toString().toLowerCase(Locale.ROOT);
 
-        //we need to find the a way to get all the card images in one folder and just call that
-        //still need to figure out a way to implement the special card
-        cardImageMap.put("1", "blue1.png"); //we need to find the folder that allows to get the card naming and stuff
-        cardImageMap.put("2", "blue2.png");
-        cardImageMap.put("3", "blue3.png");
-        cardImageMap.put("4", "blue4.png");
-        cardImageMap.put("5", "blue5.png");
-        cardImageMap.put("6", "blue6.png");
-        cardImageMap.put("7", "blue7.png");
-        cardImageMap.put("8", "blue8.png");
-        cardImageMap.put("9", "blue9.png");
-        cardImageMap.put("0", "blue10.png");
-
-        cardImageMap.put("1", "green1.png");
-        cardImageMap.put("2", "green2.png");
-        cardImageMap.put("3", "green3.png");
-        cardImageMap.put("4", "green4.png");
-        cardImageMap.put("5", "green5.png");
-        cardImageMap.put("6", "green6.png");
-        cardImageMap.put("7", "green7.png");
-        cardImageMap.put("8", "green8.png");
-        cardImageMap.put("9", "green9.png");
-        cardImageMap.put("0", "green10.png");
-
-        cardImageMap.put("1", "red1.png");
-        cardImageMap.put("2", "red2.png");
-        cardImageMap.put("3", "red3.png");
-        cardImageMap.put("4", "red4.png");
-        cardImageMap.put("5", "red5.png");
-        cardImageMap.put("6", "red6.png");
-        cardImageMap.put("7", "red7.png");
-        cardImageMap.put("8", "red8.png");
-        cardImageMap.put("9", "red9.png");
-        cardImageMap.put("0", "red10.png");
-
-        cardImageMap.put("1", "yellow1.png");
-        cardImageMap.put("2", "yellow2.png");
-        cardImageMap.put("3", "yellow3.png");
-        cardImageMap.put("4", "yellow4.png");
-        cardImageMap.put("5", "yellow5.png");
-        cardImageMap.put("6", "yellow6.png");
-        cardImageMap.put("7", "yellow7.png");
-        cardImageMap.put("8", "yellow8.png");
-        cardImageMap.put("9", "yellow9.png");
-        cardImageMap.put("0", "yellow10.png");
-
-        //Retrieve the corresponding image file name based on the card's rank
-        String imageFileName = cardImageMap.get(card.getValue());
+        // Generate the image file name based on the card's value and color
+        String imageFileName = color + card.getValue() + ".png";
 
         // Use the getResource() method to load the image from the classpath
         URL imageUrl = getClass().getResource("/images/" + imageFileName);
 
-        // Check if the image URL is valid, otherwise return null
-        if(imageUrl == null){
-            return null;
+        // Check if the image URL is valid, otherwise return a default image
+        if (imageUrl == null) {
+            System.err.println("Image not found for card: " + card.getValue());
+            // You can return a default image or handle this case based on your requirements
+            return new ImageIcon(); // Empty ImageIcon, replace with your default image
         }
         // Create and return a new ImageIcon from the image URL
-        return new ImageIcon(imageUrl); // Placeholder, replace with actual implementation
+        return new ImageIcon(imageUrl);
     }
-
-
-
-
 
     private void drawCard() {
+        // Ensure that there is a valid UnoGame instance
+        if (unoGame == null) {
+            return;
+        }
 
+        // Draw a card for the current player
+        Card drawnCard = unoGame.drawCard(currentPlayer);
+
+        // Check if the drawn card is null (deck is empty or other conditions)
+        if (drawnCard == null) {
+            // Handle the case where no card is drawn (e.g., display a message)
+            System.out.println("No card drawn. The deck might be empty.");
+            return;
+        }
+
+        // Add the drawn card to the current player's hand
+        currentPlayer.addCard(drawnCard);
+
+        // Update the GUI to reflect the changes
+        displayPlayerHand(currentPlayer);
+        displayTopCard(unoGame.getTopCard());
+
+        // Check if the drawn card has special effects (e.g., skip, reverse, etc.)
+        // Implement logic to handle special card effects here
+
+        // Move to the next player
+        nextPlayer();
     }
+
+
 
     private void endTurn() {
         System.exit(0);
