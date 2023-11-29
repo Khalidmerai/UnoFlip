@@ -1,9 +1,9 @@
 package SRC.GUI.views;
 
-import SRC.Cards.Card;
-import SRC.Cards.DoubleSidedCard;
-import SRC.GUI.Models.Game;
-import SRC.GUI.Models.Player;
+import SRC.GUI.models.Game;
+import SRC.GUI.models.Player;
+import SRC.cards.Card;
+import SRC.cards.DoubleSidedCard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * Display the current scores of all of the players in the current UNO game
  */
 public class InfoViewPanel extends JLabel implements GameView {
-    ArrayList<SRC.Player> players;
+    ArrayList<Player> players;
     Game game;
     JLabel scores;
 
@@ -34,7 +34,7 @@ public class InfoViewPanel extends JLabel implements GameView {
         String display = "";
         int numPlayers = players.size();
         for(int i = 0; i < numPlayers; i++){
-            SRC.Player iterplayer = players.get(i);
+            Player iterplayer = players.get(i);
             display += iterplayer.getName() + ": " + iterplayer.getScore();
             if (i != numPlayers - 1) {
                 display += ", ";

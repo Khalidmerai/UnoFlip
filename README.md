@@ -73,6 +73,18 @@ Marina Latif - SRC.UnoGUI.java SRC.Card.java, UML diagram, Sequence diagram, Rea
 
 Abdulrahman Aldayel - SRC.Controller.java
 
+BREAK DOWN OF TASKS FOR MILESTONE 3
+---------------------------------------
+
+Khalid Merai - edited the GUI frame 
+
+Scharara Islam - updated ReadMe file and diagrams
+
+Marina Latif - Edited the GUI Frame 
+
+Abdulrahman Aldayel - 
+
+
 
 
 
