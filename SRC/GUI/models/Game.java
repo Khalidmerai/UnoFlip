@@ -5,12 +5,13 @@ import SRC.GUI.views.GameView;
 import SRC.cards.Card;
 import SRC.cards.DoubleSidedCard;
 
+import java.io.*;
 import java.util.*;
 
 /**
  * A light side UNO Flip game that has players, cards, and contains the logic required to play a game of light side UNO Flip.
  */
-public class Game {
+public class Game implements Serializable {
 
     public static final int PLAYER_MIN = 2;
     public static final int PLAYER_MAX = 4;
@@ -78,14 +79,14 @@ public class Game {
     /**
      * @return The Players in the game
      */
-    public ArrayList<Player> getPlayers(){
+    public ArrayList<Player> getPlayers() {
         return players;
     }
 
     /**
      * @return The Console.Model.Deck in the game
      */
-    public Stack<DoubleSidedCard> getDeck(){
+    public Stack<DoubleSidedCard> getDeck() {
         return deck;
     }
 
@@ -99,12 +100,16 @@ public class Game {
     /**
      * @return the current colour of the top card
      */
-    public Card.Colour getCurrentColour() { return currentColour; }
+    public Card.Colour getCurrentColour() {
+        return currentColour;
+    }
 
     /**
      * @return the current symbol of the top card
      */
-    public Card.Symbol getCurrentSymbol() { return getTopCard().getSymbol(); }
+    public Card.Symbol getCurrentSymbol() {
+        return getTopCard().getSymbol();
+    }
 
     /**
      * Add a new Console.Model.Player to the Game
@@ -129,7 +134,7 @@ public class Game {
      */
     public void shuffleDeck() {
         //Puts cards in played cards into discard and reshuffles
-        if(!playedCards.isEmpty()) {
+        if (!playedCards.isEmpty()) {
             DoubleSidedCard topCard = playedCards.pop();
             while (!playedCards.isEmpty()) {
                 deck.push(playedCards.pop());
@@ -145,14 +150,14 @@ public class Game {
     public void dealCards() {
         for (int i = 0; i < STARTING_HAND_SIZE; i++) {
             for (Player p : players) {
-                if(deck.isEmpty()){
+                if (deck.isEmpty()) {
                     shuffleDeck();
                 }
                 p.dealCard(deck.pop());
             }
         }
         // Place starting card
-        if(deck.isEmpty()){
+        if (deck.isEmpty()) {
             shuffleDeck();
         }
         DoubleSidedCard topCard = deck.pop();
@@ -168,7 +173,6 @@ public class Game {
     }
 
     /**
-     *
      * @param running the status of whether the game is running
      */
     public void setRunning(boolean running) {
@@ -179,7 +183,7 @@ public class Game {
      * Advance the turn to the next player
      */
     public void advanceTurn() {
-        if(hasWonRound()){
+        if (hasWonRound()) {
             for (GameView view : views) {
                 view.handleNewTurn(players.get(currentPlayerIndex));
             }
@@ -222,10 +226,9 @@ public class Game {
         Card activeSide = card.getActiveSide();
         boolean isWild = activeSide.cardAction(this);
         String message = "";
-        if(!isWild){
+        if (!isWild) {
             currentColour = activeSide.getColour();
-        }
-        else{
+        } else {
             message = "WILD";
         }
 
@@ -275,7 +278,7 @@ public class Game {
      * @param player The Console.Model.Player whose turn it is
      */
     public DoubleSidedCard drawCard(Player player) {
-        if(deck.isEmpty()){
+        if (deck.isEmpty()) {
             shuffleDeck();
         }
         DoubleSidedCard drawnCard = deck.pop();
@@ -291,22 +294,19 @@ public class Game {
      *
      * @return The index of the next Console.Model.Player
      */
-    public int nextPlayer(){
+    public int nextPlayer() {
         int playerCount = players.size();
 
-        if(skipEveryone) {
+        if (skipEveryone) {
             return currentPlayerIndex;
         }
         if (turnOrderReversed && skipPlayer) {
             return ((currentPlayerIndex - 2) % playerCount + playerCount) % playerCount;
-        }
-        else if (turnOrderReversed) {
+        } else if (turnOrderReversed) {
             return ((currentPlayerIndex - 1) % playerCount + playerCount) % playerCount;
-        }
-        else if (skipPlayer){
+        } else if (skipPlayer) {
             return (currentPlayerIndex + 2) % playerCount;
-        }
-        else {
+        } else {
             return (currentPlayerIndex + 1) % playerCount;
         }
     }
@@ -316,9 +316,9 @@ public class Game {
      *
      * @return Whether or not a Console.Model.Player has won the game
      */
-    public boolean hasWonGame(){
-        for (Player player : players){
-            if (player.getScore() >= POINTS_TO_WIN){
+    public boolean hasWonGame() {
+        for (Player player : players) {
+            if (player.getScore() >= POINTS_TO_WIN) {
                 return true;
             }
         }
@@ -328,7 +328,7 @@ public class Game {
     /**
      * Updates the score for the current player
      */
-    public void assignScore(){
+    public void assignScore() {
         players.get(currentPlayerIndex).incrementScore(getCurrentScore());
     }
 
@@ -342,8 +342,8 @@ public class Game {
     /**
      * Puts all the cards in a given hand back into the deck
      */
-    public void addToDeck(ArrayList<DoubleSidedCard> hand){
-        for (DoubleSidedCard card: hand){
+    public void addToDeck(ArrayList<DoubleSidedCard> hand) {
+        for (DoubleSidedCard card : hand) {
             deck.push(card);
         }
     }
@@ -351,7 +351,7 @@ public class Game {
     /**
      * Resets the state of the game
      */
-    public void resetGame(){
+    public void resetGame() {
         roundNumber++;
         Stack<DoubleSidedCard> deck = GameRunner.createDoubleSidedDeck();
         setDeck(deck);
@@ -360,7 +360,7 @@ public class Game {
         skipPlayer = false;
         skipEveryone = false;
         currentPlayerIndex = -1;
-        for (Player player: players){
+        for (Player player : players) {
             player.clearHand();
         }
 
@@ -376,7 +376,7 @@ public class Game {
     /**
      * Reverses the turn order
      */
-    public void reverseTurn(){
+    public void reverseTurn() {
         turnOrderReversed = !turnOrderReversed;
         for (GameView view : views) {
             view.handleUpdateTurnOrder(turnOrderReversed);
@@ -386,14 +386,14 @@ public class Game {
     /**
      * Skips the next player
      */
-    public void setSkipPlayer(){
+    public void setSkipPlayer() {
         skipPlayer = true;
     }
 
     /**
      * Skips everyone
      */
-    public void setSkipEveryone(){
+    public void setSkipEveryone() {
         skipEveryone = true;
     }
 
@@ -404,17 +404,19 @@ public class Game {
         return roundNumber;
     }
 
-    /** Sets the deck of cards to be used in play
+    /**
+     * Sets the deck of cards to be used in play
+     *
      * @param deck The deck of cards
      */
-    public void setDeck(Stack<DoubleSidedCard> deck){
+    public void setDeck(Stack<DoubleSidedCard> deck) {
         this.deck = deck;
     }
 
     /**
      * @return If the current player has won
      */
-    public boolean hasWonRound(){
+    public boolean hasWonRound() {
         return currentPlayerIndex != -1 && players.get(currentPlayerIndex).getHand().size() == 0;
     }
 
@@ -426,9 +428,9 @@ public class Game {
         this.dark = dark;
     }
 
-    public void flip(){
+    public void flip() {
         dark = !dark;
-        for (Player player:players){
+        for (Player player : players) {
             player.flip();
         }
         reverseStack(deck);
@@ -439,19 +441,56 @@ public class Game {
 
         this.currentColour = playedCards.peek().getActiveSide().getColour();
     }
-    private void reverseStack(Stack<DoubleSidedCard> stack){
+
+    private void reverseStack(Stack<DoubleSidedCard> stack) {
         Queue<DoubleSidedCard> queue = new LinkedList<>();
-        while(!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             queue.add(stack.pop());
         }
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             stack.add(queue.remove());
         }
     }
 
-    private void flipStack(Stack<DoubleSidedCard> stack){
-        for (DoubleSidedCard card: stack){
+    private void flipStack(Stack<DoubleSidedCard> stack) {
+        for (DoubleSidedCard card : stack) {
             card.flip();
+        }
+    }
+
+    /**
+     * Saves the current game state to a file. This method serializes the entire game object
+     * and writes it to "game_state.sav". If the game state is successfully saved, it can be
+     * later loaded from this file.
+     */
+    public void saveGame() {
+        try (FileOutputStream fileOut = new FileOutputStream("game_state.sav");
+             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+            out.writeObject(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Loads the game state from the "game_state.sav" file. If the file does not exist,
+     * it indicates there is no previously saved game, and a null object is returned.
+     * If the file exists, it attempts to deserialize the Game object and return it.
+     *
+     * @return The loaded Game object, or null if no saved game is found or an error occurs.
+     */
+    public static Game loadGame() {
+        File saveFile = new File("game_state.sav");
+        if (!saveFile.exists()) {
+            System.out.println("No saved game found.");
+            return null;
+        }
+        try (FileInputStream fileIn = new FileInputStream(saveFile);
+             ObjectInputStream in = new ObjectInputStream(fileIn)) {
+            return (Game) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

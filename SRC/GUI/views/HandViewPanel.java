@@ -29,6 +29,9 @@ public class HandViewPanel extends JPanel implements GameView {
     private Player player;
     private Game game;
 
+    JButton saveButton;
+    JButton loadButton;
+
     /**
      * Create a new HandViewPanel, along with its contents, and controller
      */
@@ -82,6 +85,14 @@ public class HandViewPanel extends JPanel implements GameView {
 
         this.add(actionPanel);
         this.add(scrollPane);
+
+        saveButton = new JButton("Save Game");
+        saveButton.addActionListener(e -> handleSaveGame());
+        this.add(saveButton);
+
+        loadButton = new JButton("Load Game");
+        loadButton.addActionListener(e -> handleLoadGame());
+        this.add(loadButton);
     }
 
     @Override
@@ -184,6 +195,34 @@ public class HandViewPanel extends JPanel implements GameView {
         }
         aiTurnMessage.setText(currentPlayer.getName() + " played a " + card);
 
+    }
+
+    /**
+     * Handles the action of saving the game.
+     */
+    private void handleSaveGame() {
+        if (game != null) {
+            game.saveGame();
+            JOptionPane.showMessageDialog(this, "Game saved successfully!");
+        } else {
+            JOptionPane.showMessageDialog(this, "No game to save!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * Handles the action of loading a saved game.
+     */
+    private void handleLoadGame() {
+        Game loadedGame = Game.loadGame();
+        if (loadedGame != null) {
+            this.game = loadedGame;
+            this.player = game.getCurrentPlayer();
+            playerName.setText("Current Player: " + player.getName());
+            updateCardPanel();
+            JOptionPane.showMessageDialog(this, "Game loaded successfully!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to load game!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
 }
