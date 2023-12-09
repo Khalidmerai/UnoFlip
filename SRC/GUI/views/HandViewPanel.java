@@ -34,6 +34,9 @@ public class HandViewPanel extends JPanel implements GameView {
 
     JButton replayButton;
 
+    JButton undoButton;
+    JButton redoButton;
+
     /**
      * Create a new HandViewPanel, along with its contents, and controller
      */
@@ -99,6 +102,14 @@ public class HandViewPanel extends JPanel implements GameView {
         replayButton = new JButton("Replay");
         replayButton.addActionListener(e -> handleReplay());
         this.add(replayButton);
+
+        undoButton = new JButton("Undo");
+        undoButton.addActionListener(e -> handleUndo());
+        this.add(undoButton);
+
+        redoButton = new JButton("Redo");
+        redoButton.addActionListener(e -> handleRedo());
+        this.add(redoButton);
     }
 
     @Override
@@ -236,6 +247,20 @@ public class HandViewPanel extends JPanel implements GameView {
      */
     private void handleReplay() {
         game.resetGame();
+    }
+
+    /**
+     * Handles the action of undoing the play.
+     */
+    private void handleUndo() {
+        // TODO: Handle Undo
+    }
+
+    /**
+     * Handles the action of redoing the play.
+     */
+    private void handleRedo() {
+        // TODO: Handle Redo
     }
 
 }
