@@ -28,28 +28,22 @@ Uno has a few simple rules:
 7. The game continues until one player has no cards left or the deck is empty.
 
 
-Project Structure
----------------------------------------
+##Project Structure
 
-The project consists of the following Java classes:
-
-SRC.UnoGame.java: The main Uno game class that manages the game logic.
-
-SRC.Card.java: Represents Uno cards with color, type, and value.
-
-SRC.Deck.java: Represents the Uno deck and provides card drawing and shuffling.
-
-SRC.Player.java: Represents Uno players and their hand of cards.
-
-SRC.ConsoleUI.java: Handles user interaction through the console, including player input and game output.
-
-CardTest.java: Contains unit tests for the SRC.Card class to ensure card-related functionality.
-
-SRC.Main.java: The entry point of the Uno game. It initializes the game and starts the gameplay.
-
-SRC.UnoGUI.java: GUI-based implementation of the Uno card game
-
-SRC.Controller.java: Controller object that manages the interaction between the game logic (UnoGame.java) and the GUI-Based (UnoGUI.java)
+1.Game.java
+A light side UNO Flip game that has players, cards, and contains the logic required to play a game of light side UNO Flip.
+2.WildView.java
+Represents the view for selecting the new color when a Wild card is played in UNO. Displays a dialog with color options and allows the user to choose a color. Extends JDialog and implements an ActionListener to handle color selection.
+3.GameRunner.java
+Initializes and runs an UNO game. Manages the creation of UNO card decks, shuffling, dealing cards, and initiating game rounds. Includes a createDoubleSidedDeck method to generate a deck of DoubleSidedCard. Contains the main method to start the UNO game.
+4.AiHelper.java
+A utility class to assist AI players in making decisions during the game. Helps AI players choose cards based on the current game state and the cards in their hands.
+5.HandController.java
+The controller for the portion of the UNO interface that displays the current player's hand and available actions. Manages playing cards, drawing cards, and advancing turns.
+6.WildController.java
+The controller to control the portion of the UNO interface that pops up if a Wild card is played. Works with the WildView to get the new color selection from the user and updates the game accordingly.
+7.Player.java
+Represents a player in the UNO game. Contains information about the player's name, score, hand of cards, and whether the player is controlled by AI. Provides methods to access and manipulate the player's information, such as getting the name, score, and active hand. Includes methods to increment the player's score, deal a card, play a card, and manage the player's hand.
 
 BREAK DOWN OF TASKS FOR MILESTONE 1
 ---------------------------------------
