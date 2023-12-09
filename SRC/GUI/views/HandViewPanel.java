@@ -32,6 +32,8 @@ public class HandViewPanel extends JPanel implements GameView {
     JButton saveButton;
     JButton loadButton;
 
+    JButton replayButton;
+
     /**
      * Create a new HandViewPanel, along with its contents, and controller
      */
@@ -93,6 +95,10 @@ public class HandViewPanel extends JPanel implements GameView {
         loadButton = new JButton("Load Game");
         loadButton.addActionListener(e -> handleLoadGame());
         this.add(loadButton);
+
+        replayButton = new JButton("Replay");
+        replayButton.addActionListener(e -> handleReplay());
+        this.add(replayButton);
     }
 
     @Override
@@ -223,6 +229,13 @@ public class HandViewPanel extends JPanel implements GameView {
         } else {
             JOptionPane.showMessageDialog(this, "Failed to load game!", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    /**
+     * Handles the action of replaying the game.
+     */
+    private void handleReplay() {
+        game.resetGame();
     }
 
 }
